@@ -31,12 +31,11 @@ for valor in range(10):
 for valor in range(1,10):
     print(valor)
 # range comienza desde 0 y es iterable
+for valor in range(1,10,2):
+    print(valor)
 # Primer parametro desde donde empieza a iterar
 # Segundo parametro las veces que va a iterar
 # Tercer parametro va a mostrar cada x numero
-for valor in range(1,10,2):
-    print(valor)
-
 #################### SWITCH ##################
 valor = 20
 match ():
