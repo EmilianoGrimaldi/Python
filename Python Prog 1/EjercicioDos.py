@@ -19,7 +19,7 @@ votos_totales = 0
 porcentaje_de_votos = None
 porcentaje_candidato = 0
 #Utilizo bucle for al saber las veces que tengo que iterar, sino utilizaria while
-for i in range(5):
+for i in range(1,6):
     #Pedido de datos al usuario y validacion
     nombre_de_candidato = input("Ingresar nombre del candidato: ")
 
@@ -48,6 +48,18 @@ for i in range(5):
         if(votos_de_candidato < candidato_con_menos_votos):
             nombre_candidato_con_menos_votos = nombre_de_candidato
             candidato_con_menos_votos = votos_de_candidato   
+    
+    match(i):
+        case 1:
+            votos_de_candidato_uno = votos_de_candidato
+        case 2:
+            votos_de_candidato_dos = votos_de_candidato
+        case 3: 
+            votos_de_candidato_tres = votos_de_candidato
+        case 4:
+            votos_de_candidato_cuatro = votos_de_candidato
+        case 5:
+            votos_de_candidato_cinco = votos_de_candidato
     
     acumulador_edades += edad_de_candidato
     votos_totales += votos_de_candidato
