@@ -51,24 +51,39 @@ for i in range(1,6):
     
     match(i):
         case 1:
-            votos_de_candidato_uno = votos_de_candidato
+            votos_candidato_uno = votos_de_candidato
+            nombre_canidato_uno = nombre_de_candidato
         case 2:
-            votos_de_candidato_dos = votos_de_candidato
+            votos_candidato_dos = votos_de_candidato
+            nombre_canidato_dos = nombre_de_candidato
         case 3: 
-            votos_de_candidato_tres = votos_de_candidato
+            votos_candidato_tres = votos_de_candidato
+            nombre_canidato_tres = nombre_de_candidato
         case 4:
-            votos_de_candidato_cuatro = votos_de_candidato
+            votos_candidato_cuatro = votos_de_candidato
+            nombre_canidato_cuatro = nombre_de_candidato
         case 5:
-            votos_de_candidato_cinco = votos_de_candidato
+            votos_candidato_cinco = votos_de_candidato
+            nombre_canidato_cinco = nombre_de_candidato
     
     acumulador_edades += edad_de_candidato
     votos_totales += votos_de_candidato
     contador_de_candidatos += 1
     
 promedio_de_edades_de_candidatos = acumulador_edades / contador_de_candidatos
+porcentaje_votos_candidato_uno = (votos_candidato_uno / votos_totales) * 100
+porcentaje_votos_candidato_dos = (votos_candidato_dos / votos_totales) * 100
+porcentaje_votos_candidato_tres = (votos_candidato_tres / votos_totales) * 100
+porcentaje_votos_candidato_cuatro = (votos_candidato_cuatro / votos_totales) * 100
+porcentaje_votos_candidato_cinco = (votos_candidato_cinco / votos_totales) * 100
 
 #INFORMES
-print("El candidato con mas votos es: ", nombre_candidato_con_mas_votos, "con ", candidato_con_mas_votos, " votos")
-print("El candidato con menos votos es: ", nombre_candidato_con_menos_votos, "con ", candidato_con_menos_votos, " votos")
-print("El promedio de edades de los candidatos es: ", promedio_de_edades_de_candidatos)
-print("El total de votos emitidos fue: ", votos_totales)
+print("El candidato con mas votos es:", nombre_candidato_con_mas_votos, "con", candidato_con_mas_votos, "votos")
+print("El candidato con menos votos es:", nombre_candidato_con_menos_votos, "con", candidato_con_menos_votos, "votos")
+print("El promedio de edades de los candidatos es:", promedio_de_edades_de_candidatos)
+print("El total de votos emitidos fue:", votos_totales)
+print("El porcentaje de", nombre_canidato_uno, "fue:", round(porcentaje_votos_candidato_uno,2),"%")
+print("El porcentaje de", nombre_canidato_dos, "fue:", round(porcentaje_votos_candidato_dos,2),"%")
+print("El porcentaje de", nombre_canidato_tres, "fue:", round(porcentaje_votos_candidato_tres,2),"%")
+print("El porcentaje de", nombre_canidato_cuatro, "fue:", round(porcentaje_votos_candidato_cuatro,2),"%")
+print("El porcentaje de", nombre_canidato_cinco, "fue:", round(porcentaje_votos_candidato_cinco,2),"%")

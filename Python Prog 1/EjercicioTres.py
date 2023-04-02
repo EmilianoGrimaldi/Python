@@ -18,14 +18,19 @@
 
 #DECLARACION DE VARIABLES
 bandera_piloto_nacionalidad_joven = True
+contador_vehiculos_numero_par = 0
+bandera_piloto_menos_victorias = True
+contador_piloto_mayor_25 = 0
+bandera_piloto_mas_veterano = True
+acumulador_edad_vehiculos_par = 0
 
 #UTILIZO UN BUCLE FOR QUE LE PERMITA CARGAR LOS 10 INTEGRANTES
-for i in range(1,4):
+for i in range(1,6):
     #Ingreso y validacion de datos
     nombre_piloto = input("Ingrese nombre: ")
 
     edad_piloto = int(input("Ingrese edad [mayor a 18]: "))
-    while(edad_piloto < 18):
+    while(edad_piloto < 19):
         edad_piloto = int(input("Reingrese edad [mayor a 18]: "))
     
     nacionalidad_piloto = input("Ingrese nacionalidad [argentino, inglés, francés, brasilero, estadounidense]: ")
@@ -33,21 +38,54 @@ for i in range(1,4):
         nacionalidad_piloto = input("Reingrese nacionalidad [argentino, inglés, francés, brasilero, estadounidense]: ")
     
     cantidad_carreras_ganadas = int(input("Ingrese la cantidad de carreras ganadas [Mayor a 0]: "))
-    while(cantidad_carreras_ganadas < 0):
+    while(cantidad_carreras_ganadas < 1):
         cantidad_carreras_ganadas = int(input("Reingrese la cantidad de carreras ganadas [Mayor a 0]: "))
     
     numero_vehiculo = int(input("Ingrese numero de vehiculo [Mayor a 0]: "))
-    while(numero_vehiculo < 0):
+    while(numero_vehiculo < 1):
        numero_vehiculo = int(input("Reingrese numero de vehiculo [Mayor a 0]: ")) 
 
     #Nacionalidad del piloto más joven.
     #Para saber esto necesito:
     #en la primera iteracion guardar la edad del piloto en una variable auxiliar y luego en cada iteracion ir comparando la variable de edad con la auxiliar para ver si es menor. Si es el caso guardo la nacionalidad del piloto mas joven
+    
+    # *Nombre del piloto más joven con más victorias.
+
+    # *Nacionalidad del piloto más veterano con menos victorias.
     if(i == 1):
         piloto_mas_joven = edad_piloto
         nacionalidad_mas_joven = nacionalidad_piloto
+        nombre_piloto_mas_joven = nombre_piloto
+        piloto_joven_mas_victorias = cantidad_carreras_ganadas
+        piloto_mas_veterano = edad_piloto
+        nacionalidad_mas_veterano = nacionalidad_piloto  
+        piloto_veterano_menos_victorias = cantidad_carreras_ganadas
     else:
         if(edad_piloto < piloto_mas_joven):
             piloto_mas_joven = edad_piloto
             nacionalidad_mas_joven = nacionalidad_piloto
+        if(cantidad_carreras_ganadas > piloto_joven_mas_victorias):
+            nombre_piloto_mas_joven = nombre_piloto
+        if(edad_piloto > piloto_mas_veterano):
+            if(cantidad_carreras_ganadas < piloto_veterano_menos_victorias):
+                nacionalidad_mas_veterano = nacionalidad_piloto 
+
+# *Cantidad de vehículos con número par.
+# *Nombre del piloto con menos victorias y el número de auto impar.
+# Primero ver si el auto es impar, si es impar. Busco el piloto con menos victorias usando el algoritmo de utilize anteriormente para el piloto mas joven
+# *Cantidad de pilotos mayores de 25 años con número de vehículo impar.
+# *Promedio de edad de los pilotos que tiene un vehículo con número par.
+    if(numero_vehiculo % 2 == 0):
+        contador_vehiculos_numero_par += 1
+        acumulador_edad_vehiculos_par += edad_piloto
+    else:
+        if(bandera_piloto_menos_victorias == True or cantidad_carreras_ganadas < piloto_menos_victorias):
+            piloto_menos_victorias = cantidad_carreras_ganadas
+            nombre_piloto_menos_victorias = nombre_piloto
+        if(edad_piloto > 25):
+            contador_piloto_mayor_25 += 1
+
+promedio_edad_vehiculo_par = acumulador_edad_vehiculos_par /  contador_vehiculos_numero_par
+
 print("La nacionalidad del piloto mas joven es: ", nacionalidad_mas_joven)
+print("")
