@@ -25,7 +25,7 @@ bandera_piloto_mas_veterano = True
 acumulador_edad_vehiculos_par = 0
 
 #UTILIZO UN BUCLE FOR QUE LE PERMITA CARGAR LOS 10 INTEGRANTES
-for i in range(1,6):
+for i in range(1,4):
     #Ingreso y validacion de datos
     nombre_piloto = input("Ingrese nombre: ")
 
@@ -45,47 +45,60 @@ for i in range(1,6):
     while(numero_vehiculo < 1):
        numero_vehiculo = int(input("Reingrese numero de vehiculo [Mayor a 0]: ")) 
 
-    #Nacionalidad del piloto más joven.
-    #Para saber esto necesito:
-    #en la primera iteracion guardar la edad del piloto en una variable auxiliar y luego en cada iteracion ir comparando la variable de edad con la auxiliar para ver si es menor. Si es el caso guardo la nacionalidad del piloto mas joven
-    
-    # *Nombre del piloto más joven con más victorias.
-
-    # *Nacionalidad del piloto más veterano con menos victorias.
     if(i == 1):
         piloto_mas_joven = edad_piloto
         nacionalidad_mas_joven = nacionalidad_piloto
         nombre_piloto_mas_joven = nombre_piloto
         piloto_joven_mas_victorias = cantidad_carreras_ganadas
-        piloto_mas_veterano = edad_piloto
-        nacionalidad_mas_veterano = nacionalidad_piloto  
-        piloto_veterano_menos_victorias = cantidad_carreras_ganadas
+        # piloto_mas_veterano = edad_piloto
+        # nacionalidad_mas_veterano = nacionalidad_piloto  
+        # piloto_veterano_menos_victorias = cantidad_carreras_ganadas
     else:
         if(edad_piloto < piloto_mas_joven):
             piloto_mas_joven = edad_piloto
             nacionalidad_mas_joven = nacionalidad_piloto
-        if(cantidad_carreras_ganadas > piloto_joven_mas_victorias):
-            nombre_piloto_mas_joven = nombre_piloto
-        if(edad_piloto > piloto_mas_veterano):
-            if(cantidad_carreras_ganadas < piloto_veterano_menos_victorias):
-                nacionalidad_mas_veterano = nacionalidad_piloto 
+            if(cantidad_carreras_ganadas > piloto_joven_mas_victorias):
+                nombre_piloto_mas_joven = nombre_piloto
+                piloto_joven_mas_victorias = cantidad_carreras_ganadas
+    #     if(edad_piloto > piloto_mas_veterano):
+    #         piloto_mas_veterano = edad_piloto
+    #         if(cantidad_carreras_ganadas < piloto_veterano_menos_victorias):
+    #             nacionalidad_mas_veterano = nacionalidad_piloto  
+    #             piloto_veterano_menos_victorias = cantidad_carreras_ganadas 
 
-# *Cantidad de vehículos con número par.
-# *Nombre del piloto con menos victorias y el número de auto impar.
-# Primero ver si el auto es impar, si es impar. Busco el piloto con menos victorias usando el algoritmo de utilize anteriormente para el piloto mas joven
-# *Cantidad de pilotos mayores de 25 años con número de vehículo impar.
-# *Promedio de edad de los pilotos que tiene un vehículo con número par.
     if(numero_vehiculo % 2 == 0):
         contador_vehiculos_numero_par += 1
         acumulador_edad_vehiculos_par += edad_piloto
     else:
-        if(bandera_piloto_menos_victorias == True or cantidad_carreras_ganadas < piloto_menos_victorias):
+        if(bandera_piloto_menos_victorias == True):
             piloto_menos_victorias = cantidad_carreras_ganadas
             nombre_piloto_menos_victorias = nombre_piloto
+            bandera_piloto_menos_victorias = False
+        else:
+            if(cantidad_carreras_ganadas < piloto_menos_victorias):
+                piloto_menos_victorias = cantidad_carreras_ganadas
+                nombre_piloto_menos_victorias = nombre_piloto
         if(edad_piloto > 25):
             contador_piloto_mayor_25 += 1
 
-promedio_edad_vehiculo_par = acumulador_edad_vehiculos_par /  contador_vehiculos_numero_par
+# promedio_edad_vehiculo_par = acumulador_edad_vehiculos_par /  contador_vehiculos_numero_par
 
+
+# *Nacionalidad del piloto más joven.
 print("La nacionalidad del piloto mas joven es: ", nacionalidad_mas_joven)
-print("")
+# *Cantidad de vehículos con número par.
+print("La cantidad de vehiculos con numero par es:", contador_vehiculos_numero_par)
+# *Nombre del piloto con menos victorias y el número de auto impar.
+print("El nombre del piloto con menos victorias es:", nombre_piloto_menos_victorias)
+# *Cantidad de pilotos mayores de 25 años con número de vehículo impar.
+print("La cantidad de pilotos mayores de 25 y con numero vehiculo impar es:", contador_piloto_mayor_25)
+# *Nombre del piloto más joven con más victorias.
+print("El nombre del piloto mas joven con mas victorias es:", nombre_piloto_mas_joven)
+
+# *Nacionalidad del piloto más veterano con menos victorias.
+
+#print("La nacionalidad del piloto mas veterano con menos victorias es:", nacionalidad_mas_veterano)
+
+# *Promedio de edad de los pilotos que tiene un vehículo con número par.
+
+# print("El promedio de edad de los pilotos que tienen un vehiculo con numero par es:", promedio_edad_vehiculo_par)
