@@ -12,20 +12,15 @@
 # stock.
 
 while True:  # Siempre va a entrar al bucle
-    try:
-        producto_tipo = str(
-            input("Ingresar tipo de producto [barbijo - jabon - alcohol]: "))
-        if (producto_tipo == "barbijo" or producto_tipo == "jabon" or producto_tipo == "alcohol"):
-            break  # para salir del bucle infinito
-        else:
-            print("Tipo incorrecto")
-    except ValueError:
-        print("No se ingreso una palabra")
+    producto_tipo = input("Ingresar tipo de producto [barbijo - jabon - alcohol]: ")
+    if (producto_tipo == "barbijo" or producto_tipo == "jabon" or producto_tipo == "alcohol"):
+        break  # para salir del bucle infinito
+    else:
+        print("Tipo incorrecto")
 
 while True:  # Siempre va a entrar al bucle
     try:
-        precio_producto = int(
-            input("Ingresar precio del producto [Superior a 0]: "))
+        precio_producto = int(input("Ingresar precio del producto [Superior a 0]: "))
         if (precio_producto > 0):
             break  # para salir del bucle infinito
         else:
@@ -35,8 +30,7 @@ while True:  # Siempre va a entrar al bucle
 
 while True:  # Siempre va a entrar al bucle
     try:
-        cantidad_productos = int(
-            input("Ingresar cantidad de productos [Superior a 0]: "))
+        cantidad_productos = int(input("Ingresar cantidad de productos [Superior a 0]: "))
         if (cantidad_productos > 0):
             break  # para salir del bucle infinito
         else:
@@ -44,10 +38,12 @@ while True:  # Siempre va a entrar al bucle
     except ValueError:
         print("Eso no es un numero")
 # · La marca
-marca_producto = str(input("Ingrese marca del producto: "))
+marca_producto = input("Ingrese marca del producto: ")
+#Falta validar que se ingrese solo palabras
 
 # · El fabricante
-fabricante_producto = str(input("Ingrese fabricante del producto: "))
+fabricante_producto = input("Ingrese fabricante del producto: ")
+#falta validar que sea solo palabra
 
 print(f"El tipo de producto es {producto_tipo}")
 print(f"El precio del producto es ${precio_producto}")
