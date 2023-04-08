@@ -44,6 +44,3 @@ rango = len(autos)
 autos.sort()
 for i in range(rango):
     print(f"Marca: {autos[i][0]} Año: {autos[i][1]} Precio: {autos[i][2]}")
-##nueva_lista = sorted(autos)
-# for i in range(rango):
-#     print(nueva_lista[i])
