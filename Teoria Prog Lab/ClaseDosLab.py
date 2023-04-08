@@ -1,3 +1,21 @@
+#TODAS LAS VARIABLES GUARDAN DIRECCIONES DE MEMORIA DE DONDE ESTAN LOS DATOS (PUNTEROS EN C)
+#PRIMER TIPO DE DATO MUTABLE (PUEDO MODIFICAR EL VALOR DE FABRICA) MANTIENE LA MISMA DIRECCION DE MEMORIA
+#CUANDO EL DATO ES INMUTABLE LA VARIABLE CAMBIA (LA DIRECCION DE MEMORIA)
+#
+numero = 20
+lista1 = list()
+lista2 = []
+lista3 = [10, 20, 30, 40, 50]
+# no puedo asignar valores a indices(posiciones) que no existen
+print(lista1)
+# tengo que usar metodos para trabajar con listas
+lista1.append(100) #append añade un elemento al ultimo lugar de la lista
+print(lista1)
+
+for numero in lista3:
+    print(numero)
+
+#INFO ADICIONAL DE LISTAS
 ################ Listas (Estructura de datos) #################
 #Las listas son una estructura de datos que te permiten almacenar una colección ordenada de elementos, como números, cadenas de texto, objetos, entre otros.
 
