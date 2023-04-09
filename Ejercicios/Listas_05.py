@@ -8,7 +8,7 @@
 #crear un bucle que le permita cargar al usuario los pacientes que quiera. 
 continuar = "s"
 pacientes = []
-
+# lista_mas_30_kg = []
 while continuar == "s":
     #Ingreso y validacion de datos
     while True:
@@ -54,26 +54,19 @@ while continuar == "s":
                 print("Error! Peso fuera de rango")
         except ValueError:
             print("Error! Se pidio un entero")
-    ####################################################
-    paciente = [nombre_perro, precio_consulta, raza_perro, edad_perro, peso_perro]
-    pacientes.append(paciente)
+    
+    un_paciente = [nombre_perro, precio_consulta, raza_perro, edad_perro, peso_perro]
+    pacientes.append(un_paciente)
+
+    # if peso_perro > 30:
+    #     lista_mas_30_kg.append(un_paciente)
 
     continuar = input("Ingrese 's' si desea continuar cargando. Para salir presione cualquier boton\n")
 
+for un_paciente in pacientes_ordenados_edad: # --> pacientes[un_paciente]
+    print(f"Nombre: {un_paciente[0]} -- Precio de consulta: ${un_paciente[1]} -- Raza de perro: {un_paciente[2]} -- Edad: {un_paciente[3]} -- Peso: {un_paciente[4]}")
+    
 # 1. Generar un listado con todos los datos de los pacientes ordenados por edad.
-# Ordenamos la lista de pacientes por edad
-pacientes_ordenados = sorted(pacientes, key=lambda paciente: paciente[3])
-
-# Imprimimos el listado de pacientes ordenado por edad
-print("Listado de pacientes ordenado por edad:")
-for paciente in pacientes_ordenados:
-    print("-" * 40)
-    print(f"Nombre: {paciente[0]}")
-    print(f"Precio de la consulta: ${paciente[1]}")
-    print(f"Raza: {paciente[2]}")
-    print(f"Edad: {paciente[3]} años")
-    print(f"Peso: {paciente[4]} kilos")
-
 # 2. Generar un listado de los perros que pesen más de 30 kilos y ordenarla por nombre.
 # 3. Si la facturación en bruto supera los 5000$, hay que agregarle un 21% de impuesto por ingresos brutos e informarlo.
 # 4. Informar el nombre y el peso del perro con más peso.
