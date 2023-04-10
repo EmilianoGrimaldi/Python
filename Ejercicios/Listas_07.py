@@ -8,16 +8,20 @@
 # • El nombre y edad del jugador que más muertes tuvo (MVP)
 # Nota: los datos tienen que ingresar en 1 solo string separado por espacios, y ser almacenados en una lista, investigar que función les permite lograrlo y como hacer una lista de listas.
 
-#iterar 10 veces pidiendo los datos
 lista_partidas = []
 bandera_joven = False
 bandera_mas_bajas = False
 bandera_menos_muertes = False
+bandera_mas_muertes = False
 acumulador_bajas = 0
+cantidad_bajas = 0
 
 for partidas in range(1,11):
     estadisticas_jugador = input("Nombre -- Edad -- Bajas -- Muertes\n")
     un_jugador = estadisticas_jugador.split()
+    un_jugador[1] = int(un_jugador[1])
+    un_jugador[2] = int(un_jugador[2])
+    un_jugador[3] = int(un_jugador[3])
     lista_partidas.append(un_jugador) # Lista de listas
     
     for jugador in lista_partidas:
@@ -33,16 +37,28 @@ for partidas in range(1,11):
             bandera_mas_bajas = True
     
     for jugador in lista_partidas:
-        if bandera_menos_muertes == False or jugador[3] < menos_muertes:
+        if bandera_menos_muertes == False or  jugador[3] < menos_muertes:
             menos_muertes = jugador[3]
             nombre_menos_muertes = jugador[0]
             bandera_menos_muertes = True
+    
+    for jugador in lista_partidas:
+        if bandera_mas_muertes == False or  jugador[3] > mas_muertes:
+            mas_muertes = jugador[3]
+            nombre_mas_muertes = jugador[0]
+            edad_mas_muertes = jugador[1]
+            bandera_mas_muertes = True
 
-    acumulador_bajas += int(un_jugador[2])
+    for jugador in lista_partidas:
+        if jugador[1] >= 20 and jugador[1] <= 30:
+            if jugador[3] >= 10 and jugador[3] <= 20:
+                cantidad_bajas += 1
+
+    acumulador_bajas += un_jugador[2]
     
 print(f"El nombre mas joven es {nombre_joven} y tiene {edad_joven} años")
 print(f"Jugador que más bajas tuvo es {nombre_mas_bajas}")
 print(f"Jugador con menos muertes es {nombre_menos_muertes}")
 print(f"Las bajas totales fueron {acumulador_bajas}")
-# for jugador in lista_partidas:
-#     print(jugador)
+print(f"La cantidad de jugadores que tienen entre 20 y 30 años cuyas bajas estan entre 10 y 20 fueron {cantidad_bajas}")
+print(f"El MVP fue {nombre_mas_muertes} y tiene {edad_mas_muertes} años")
