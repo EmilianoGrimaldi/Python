@@ -82,14 +82,22 @@ import os #Bibliotecas #PARA LIMPIAR LA CONSOLA
 #     os.system("pause")
 
 #MAS DE LISTAS
-notas_p1 = [7,2,4,6,10]
-notas_p2 = [4,7,10,8,3]
-promedios = []
+# notas_p1 = [7,2,4,6,10]
+# notas_p2 = [4,7,10,8,3]
+# promedios = []
 
-#carga de notas
-for i in range(5):
-    prom = (notas_p1[i] + notas_p2[i]) / 2
-    promedios.append(prom)
-print("PARCIAL 1        PARCIAL 2       PROMEDIO")
-for i in range(len(promedios)):
-    print(f"   {notas_p1[i]:2d}              {notas_p2[i]:2d}              {promedios[i]:.2f}")
+# #carga de notas
+# for i in range(5):
+#     prom = (notas_p1[i] + notas_p2[i]) / 2
+#     promedios.append(prom)
+# print("PARCIAL 1        PARCIAL 2       PROMEDIO")
+# for i in range(len(promedios)):
+#     print(f"   {notas_p1[i]:2d}              {notas_p2[i]:2d}              {promedios[i]:.2f}")
+
+#SI NO ME INTERESA LA POSICION Y SOLO QUIERO RECORRER LA LISTA UTILIZO
+# for algo in lista:
+#     print(algo)
+
+#SI ME INTERESA LA POSICION DE UN ELEMENTO
+# for i in range(len(lista)):
+#     elemento = lista[i]
