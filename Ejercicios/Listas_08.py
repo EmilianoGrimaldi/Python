@@ -12,7 +12,6 @@ flag_posicion = False
 lista_nombres = []
 
 while True:
-    
     while True:
         while True:
             nombre = input("Ingrese un nombre\n")
