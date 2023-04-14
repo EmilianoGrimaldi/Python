@@ -1,0 +1,31 @@
+frutas = {
+    "nombre": "banana",
+    "precio": 0.25
+}, {
+    "nombre": "manzana",
+    "precio": 0.30
+}, {
+    "nombre": "pera",
+    "precio": 0.10
+}, {
+    "nombre": "uva",
+    "precio":  0.15
+}, {
+    "nombre": "mandarina",
+    "precio": 0.05
+}, {
+    "nombre": "durazno",
+    "precio": 0.35
+}, {
+    "nombre": "naranja",
+    "precio": 0.40
+}, {
+    "nombre": "sandia",
+    "precio": 0.50
+}, {
+    "nombre": "melon",
+    "precio":  0.55
+}, {
+    "nombre": "frutilla",
+    "precio":  0.60
+}
