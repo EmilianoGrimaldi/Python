@@ -71,10 +71,10 @@ alumno = {
 # SI QUIERO ENTRAR A UN CAMPO QUE NO TENGO VA A APARECER UNA EXCEPCION KEY ERROR
 
 notas = []
-dic = {}
 
 # carga de notas
 for i in range(2):
+    dic = {}
     auxInt = int(input("Ingrese nota parcial 1\n"))
     dic["nota1"] = auxInt
 
