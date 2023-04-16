@@ -8,6 +8,14 @@ def pedir_string(mensaje_pedir):
 
     return string
 
+def pedir_string_espacio(mensaje_pedir):
+    while True:
+        string = input(mensaje_pedir).strip()
+        if len(string) > 0:
+            return string
+        else:
+            print("El string no puede ser vacío o contener solo espacios en blanco.")
+
 def pedir_entero(mensaje_pedir):
     while True:
         try:
