@@ -1,0 +1,3 @@
+#9. Crear un diccionario que contenga los nombres, edades, fechas de nacimiento, numeros de telefono y correos electrónicos de un numero indeterminado de personas. 
+#Luego, concatenar la fecha de nacimiento y el número de teléfono de cada persona con el formato “11-1111-1111 – dd/mm/aaaa” 
+#y agregarlo al diccionario (usar un string interpolado con format para hacerlo más facil). Finalmente imprimir en consola el nombre, correo electrónico y los datos concatenados.
