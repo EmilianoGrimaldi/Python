@@ -26,7 +26,7 @@ while True:
                 print("Error! Opcion inexistente\n")
         except ValueError:
             print(f"Error de tipo. Ingrese una opcion numerica\n")
-
+            
     match opcion:
         case 1:
             imprimir_campo_dic(lista_personajes,"nombre")
@@ -70,5 +70,6 @@ while True:
                     "Esta seguro que salir del programa? [s/n]\n").lower()
                 if confirmacion == "s":
                     break
+    
     os.system("pause")
 print("FIN DEL PROGRAMA")

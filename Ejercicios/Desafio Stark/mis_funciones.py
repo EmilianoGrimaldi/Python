@@ -39,5 +39,3 @@ def agrupar_maximos_minimos(lista, campo, max_o_min):
         if i[campo] == max_o_min:
             aux.append(i)
     return aux
-
-    

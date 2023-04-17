@@ -1,0 +1,11 @@
+{
+    "docify.commentService.programmingLanguage": "auto-detect",
+    "docify.translateService.targetLanguage": "Spanish",
+    "docify.translateService.sourceLanguage": "Spanish",
+    "docify.commentService.autoTranslationService": "Spanish",
+    "docify.commentService.sidePanelReviewMode": false,
+    "docify.commentService.moreExpressiveComments": false,
+    "docify.commentService.inlineComments": false,
+    "docify.commentService.docstringFormat": "Doxygen",
+    "docify.translateService.programmingLanguage": "python"
+}
