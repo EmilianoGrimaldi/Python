@@ -18,7 +18,9 @@ while True:
         else:
             print("El codigo de cliente no cumple con los caracteres requeridos")
     una_cuenta_bancaria['impuesto'] = pedir_entero("Ingresar porcentaje de impuesto a aplicar\n")
-    una_cuenta_bancaria['balance'] = (una_cuenta_bancaria['impuesto'] / una_cuenta_bancaria['saldo'])*100
+    
+    calculo_balance = (una_cuenta_bancaria['saldo'] * una_cuenta_bancaria['impuesto'])/100
+    una_cuenta_bancaria['balance'] = una_cuenta_bancaria['saldo'] + calculo_balance
 
     cuentas_bancarias.append(una_cuenta_bancaria)
 

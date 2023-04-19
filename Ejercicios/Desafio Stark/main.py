@@ -1,75 +1,36 @@
 from data_stark import lista_personajes
+from funciones_stark import *
 from mis_funciones import *
 import os
-
-flag_mas_alto = True
-flag_mas_bajo = True
-flag_menos_peso = True
-flag_mas_peso = True
-lista_mas_altos = []
-lista_mas_bajos = []
-lista_menos_pesados = []
-lista_mas_pesados = []
-acumulador_altura = 0
 
 while True:
     os.system("cls")
     # CONVIERTO TODAS LAS ALTURAS QUE ESTAN EN STRING LAS PASO A FLOAT
-    for personaje in lista_personajes:
-        if type(personaje["altura"]) == str:
-            personaje["altura"] = float(personaje["altura"])
-
-    for personaje in lista_personajes:
-        if type(personaje["peso"]) == str:
-            personaje["peso"] = float(personaje["peso"])
+    cambiar_tipo_str_float(lista_personajes,"altura")
+    cambiar_tipo_str_float(lista_personajes,"peso")
        
-    while True:
-        try:
-            opcion = int(input("########                STARK INDUSTRIES                 ########\n\n1 --> Imprimir nombre de todos los superheroes\n2 --> Imprimir nombre y altura de los superheroes\n3 --> El superheroe mas alto\n4 --> El superheroe mas bajo\n5 --> Altura promedio de los superheroes\n6 --> Nombre del superheroe maximo\n7 --> Nombre del superheroe minimo\n8 --> Superheroe mas pesado\n9 --> Superheroe menos pesado\n10 --> Salir\n\n"))
-            if opcion >= 1 and opcion <= 10:
-                break
-            else:
-                print("Error! Opcion inexistente\n")
-        except ValueError:
-            print(f"Error de tipo. Ingrese una opcion numerica\n")
+    encabezado_menu()
+    opcion = pedir_entero_rango("Ingrese una opcion\n",1,10)
     
     match opcion:
         case 1:
-            imprimir_campo_dic(lista_personajes,"nombre")
+            imprimir_lista_nombres(lista_personajes)
         case 2:
-            for personaje in lista_personajes:
-                print(f"{personaje['nombre']}, su altura es --> {personaje['altura']:.2f} m")
+            imprimir_nombre_altura(lista_personajes)
         case 3:
-            altura_maxima = calcular_maximo_campo_dic(lista_personajes,"altura")
-            lista_mas_altos = agrupar_maximos_minimos(lista_personajes,"altura",altura_maxima)
-            for personaje in lista_mas_altos:
-                print(f"El mas alto es {personaje['nombre']} y su altura es {personaje['altura']:.2f} m")
+            buscar_mas_alto_y_mostrarlo(lista_personajes)
         case 4:
-            altura_minima = calcular_minimo_campo_dic(lista_personajes,"altura")
-            lista_mas_bajos = agrupar_maximos_minimos(lista_personajes, "altura", altura_minima)
-            for personaje in lista_mas_bajos:
-                print(f"El mas bajo es {personaje['nombre']} y su altura es {personaje['altura']:.2f} m")
+            buscar_mas_bajo_y_mostrarlo(lista_personajes)
         case 5:
-            total_altura = acumular_total_campo_dic(lista_personajes, "altura")
-            altura_promedio = sacar_promedio(total_altura,len(lista_personajes))
-            print(f"La altura promedio es {altura_promedio:.2f}")
+            calcular_altura_promedio_mostrar(lista_personajes)
         case 6:
-            for personaje in lista_mas_altos:
-                print(f"El mas alto es --> {personaje['nombre']}, su altura es --> {personaje['altura']:.2f} m y su identidad es --> {personaje['identidad']}")
+            mostrar_nombre_mas_alto(lista_personajes)
         case 7:
-            for personaje in lista_mas_bajos:
-                print(f"El mas bajo es --> {personaje['nombre']}, su altura es --> {personaje['altura']:.2f} m y su identidad es --> {personaje['identidad']}")
+            mostrar_nombre_mas_bajo(lista_personajes)
         case 8:
-            peso_maximo = calcular_maximo_campo_dic(lista_personajes, "peso")
-            lista_mas_pesados = agrupar_maximos_minimos(lista_personajes, "peso", peso_maximo)
-
-            for personaje in lista_mas_pesados:
-                print(f"El superheroe mas pesado es {personaje['nombre']} y su peso es {personaje['peso']:.3f} kg")
+            buscar_maximo_peso_mostrar(lista_personajes)
         case 9:
-            peso_minimo = calcular_minimo_campo_dic(lista_personajes, "peso")
-            lista_menos_pesados = agrupar_maximos_minimos(lista_personajes, "peso", peso_minimo)
-            for personaje in lista_menos_pesados:
-                print(f"El superheroe menos pesado es {personaje['nombre']} y su peso es {personaje['peso']:.3f} kg")
+            buscar_minimo_peso_mostrar(lista_personajes)
         case 10:
             if opcion == 10:
                 confirmacion = input(
