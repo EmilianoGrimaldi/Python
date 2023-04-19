@@ -15,8 +15,14 @@ acumulador_altura = 0
 while True:
     os.system("cls")
     # CONVIERTO TODAS LAS ALTURAS QUE ESTAN EN STRING LAS PASO A FLOAT
-    cambiar_tipo_campo_dic(lista_personajes,str,float,"altura")
-    cambiar_tipo_campo_dic(lista_personajes,str,float,"peso")
+    for personaje in lista_personajes:
+        if type(personaje["altura"]) == str:
+            personaje["altura"] = float(personaje["altura"])
+
+    for personaje in lista_personajes:
+        if type(personaje["peso"]) == str:
+            personaje["peso"] = float(personaje["peso"])
+       
     while True:
         try:
             opcion = int(input("########                STARK INDUSTRIES                 ########\n\n1 --> Imprimir nombre de todos los superheroes\n2 --> Imprimir nombre y altura de los superheroes\n3 --> El superheroe mas alto\n4 --> El superheroe mas bajo\n5 --> Altura promedio de los superheroes\n6 --> Nombre del superheroe maximo\n7 --> Nombre del superheroe minimo\n8 --> Superheroe mas pesado\n9 --> Superheroe menos pesado\n10 --> Salir\n\n"))
@@ -26,7 +32,7 @@ while True:
                 print("Error! Opcion inexistente\n")
         except ValueError:
             print(f"Error de tipo. Ingrese una opcion numerica\n")
-            
+    
     match opcion:
         case 1:
             imprimir_campo_dic(lista_personajes,"nombre")
