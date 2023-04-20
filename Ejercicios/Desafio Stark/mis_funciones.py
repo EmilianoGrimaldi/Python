@@ -1,3 +1,5 @@
+import os
+
 def pedir_cadena_alfanumerica(mensaje):
     while True:
         alfanumerica = input(mensaje)
