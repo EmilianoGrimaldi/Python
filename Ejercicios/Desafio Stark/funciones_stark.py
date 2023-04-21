@@ -163,13 +163,24 @@ def buscar_minimo_peso_mostrar(lista):
 def sub_menu(lista):
     personajes_femeninos = []
     personajes_masculinos = []
-
+    personajes_color_ojos = []
+    # personajes_ojos_brown = []
+    # personajes_ojos_blue = []
+    # personajes_ojos_green = []
+    # personajes_ojos_yellow_without_irises = []
+    # personajes_ojos_hazel = []
+    # personajes_ojos_yellow = []
+    # personajes_ojos_silver = []
+    # personajes_ojos_red = []
+    
     for personaje in lista:
         if personaje['genero'] == "M":
             personajes_masculinos.append(personaje)
     for personaje in lista:
         if personaje['genero'] == "F":
             personajes_femeninos.append(personaje)
+    for personaje in lista:
+        personajes_color_ojos.append(personaje["color_ojos"])
 
     while True:
         os.system("cls")
@@ -239,40 +250,44 @@ def sub_menu(lista):
                 encabezado(
                     "########                NOMBRE DE SUPERHEROE MAS ALTO MASCULINO               ########\n")
                 mas_alto = buscar_maximo(personajes_masculinos, "altura")
-                mas_altos = guardar_los_maximos(personajes_masculinos, mas_alto, "altura")
-                imprimir_lista_por_campo(mas_altos,"nombre")
+                mas_altos = guardar_los_maximos(
+                    personajes_masculinos, mas_alto, "altura")
+                imprimir_lista_por_campo(mas_altos, "nombre")
             case 10:
                 encabezado(
                     "########                NOMBRE DE SUPERHEROE MAS ALTO FEMENINO               ########\n")
                 mas_alta = buscar_maximo(personajes_femeninos, "altura")
-                mas_altas = guardar_los_maximos(personajes_femeninos, mas_alta, "altura")
-                imprimir_lista_por_campo(mas_altas,"nombre")
+                mas_altas = guardar_los_maximos(
+                    personajes_femeninos, mas_alta, "altura")
+                imprimir_lista_por_campo(mas_altas, "nombre")
             case 11:
                 encabezado(
                     "########                NOMBRE DE SUPERHEROE MAS BAJO               ########\n")
                 mas_bajo = buscar_minimo(personajes_masculinos, "altura")
                 mas_bajos = guardar_los_minimos(
                     personajes_masculinos, mas_bajo, "altura")
-                imprimir_lista_por_campo(mas_bajos,"nombre")
+                imprimir_lista_por_campo(mas_bajos, "nombre")
             case 12:
                 encabezado(
                     "########                NOMBRE DE LA SUPERHEROE MAS BAJA             ########\n")
                 mas_baja = buscar_minimo(personajes_femeninos, "altura")
                 mas_bajas = guardar_los_minimos(
                     personajes_femeninos, mas_baja, "altura")
-                imprimir_lista_por_campo(mas_bajas,"nombre")
+                imprimir_lista_por_campo(mas_bajas, "nombre")
             case 13:
-                print("13")
+                color_ojos = set(personajes_color_ojos)
+                for color in color_ojos:
+                    print(color)
             case 14:
-                print("14")
+                pass
             case 15:
-                print("15")
+                pass
             case 16:
-                print("16")
+                pass
             case 17:
-                print("17")
+                pass
             case 18:
-                print("18")
+                pass
             case 19:
                 print("Volviendo al menu principal")
                 break
