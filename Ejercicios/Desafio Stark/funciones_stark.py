@@ -1,18 +1,155 @@
 from mis_funciones import *
 
+def menu_desafio_01():
+        print("""
+ ------------->                STARK INDUSTRIES SUB MENU                <-------------""")
+        print("""
+ 1  --> Imprimir nombre de todos los superheroes M
+ 2  --> Imprimir nombre de todos los superheroes F
+ 3  --> El superhéroe más alto de género M
+ 4  --> El superhéroe más alto de género F
+ 5  --> El superhéroe más bajo de género M
+ 6  --> El superhéroe más bajo de género F
+ 7  --> Altura promedio de los superhéroes de género M
+ 8  --> Altura promedio de los superhéroes de género F
+ 9  --> Nombre del superhéroe más alto de género M
+ 10 --> Nombre del superhéroe más alto de género F
+ 11 --> Nombre del superhéroe más bajo de género M
+ 12 --> Nombre del superhéroe más bajo de género F
+ 13 --> Cuántos superhéroes tienen cada tipo de color de ojos
+ 14 --> Cuántos superhéroes tienen cada tipo de color de pelo
+ 15 --> Cuántos superhéroes tienen cada tipo de inteligencia
+ 16 --> Listar todos los superhéroes agrupados por color de ojos
+ 17 --> Listar todos los superhéroes agrupados por color de pelo
+ 18 --> Listar todos los superhéroes agrupados por tipo de inteligencia
+ 19 --> Volver\n\n""")
+        opcion = pedir_entero_rango("Ingrese una opcion\n", 1, 19)
+        return opcion
+
+
+def menu_desafio_01(lista):
+    personajes_masculinos = []
+    personajes_femeninos = []
+
+    for personaje in lista:
+            if personaje['genero'] == "M":
+                personajes_masculinos.append(personaje)
+    for personaje in lista:
+            if personaje['genero'] == "F":
+                personajes_femeninos.append(personaje)
+
+    while True:
+        match menu_desafio_01:   
+            case 1:
+                print(
+                        "########                NOMBRE DE CADA SUPERHEROE MASCULINO               ########\n")
+                for personaje in lista:
+                        if personaje['genero'] == "M":
+                                print("\t\t\t|{:^30}|".format(personaje['nombre']))
+            case 2:
+                print(
+                        "########                NOMBRE DE CADA SUPERHEROE FEMENINO              ########\n")
+                for personaje in lista:
+                        if personaje['genero'] == "F":
+                                print("\t\t\t|{:^30}|".format(personaje['nombre']))
+            case 3:
+                print(
+                        "########                SUPERHEROE MAS ALTO MASCULINO               ########\n")
+                mas_alto = buscar_maximo(personajes_masculinos, "altura")
+                mas_altos = guardar_los_maximos(
+                        personajes_masculinos, mas_alto, "altura")
+                imprimir_lista(mas_altos)
+
+            case 4:
+                print(
+                        "########                SUPERHEROE MAS ALTO FEMENINO               ########\n")
+                mas_alta = buscar_maximo(personajes_femeninos, "altura")
+                mas_altas = guardar_los_maximos(
+                        personajes_femeninos, mas_alta, "altura")
+                imprimir_lista(mas_altas)
+
+            case 5:
+                print(
+                        "########                SUPERHEROE MAS BAJO MASCULINO               ########\n")
+                mas_bajo = buscar_minimo(personajes_masculinos, "altura")
+                mas_bajos = guardar_los_minimos(
+                        personajes_masculinos, mas_bajo, "altura")
+                imprimir_lista(mas_bajos)
+            case 6:
+                print(
+                        "########                SUPERHEROE MAS BAJO FEMENINO               ########\n")
+                mas_baja = buscar_minimo(personajes_femeninos, "altura")
+                mas_bajas = guardar_los_minimos(
+                        personajes_femeninos, mas_baja, "altura")
+                imprimir_lista(mas_bajas)
+            case 7:
+                print(
+                        "########                ALTURA PROMEDIO MASCULINO               ########\n")
+                acumulador_edad_masculino = acumular_total_altura(
+                        personajes_masculinos)
+                promedio_masculino = sacar_promedio(
+                        acumulador_edad_masculino, len(personajes_masculinos))
+                mostrar_promedio(promedio_masculino)
+            case 8:
+                print(
+                        "########                ALTURA PROMEDIO FEMENINO               ########\n")
+                acumulador_edad_femenino = acumular_total_altura(
+                        personajes_femeninos)
+                promedio_femenino = sacar_promedio(
+                        acumulador_edad_femenino, len(personajes_femeninos))
+                mostrar_promedio(promedio_femenino)
+            case 9:
+                print(
+                        "########                NOMBRE DE SUPERHEROE MAS ALTO MASCULINO               ########\n")
+                mas_alto = buscar_maximo(personajes_masculinos, "altura")
+                mas_altos = guardar_los_maximos(
+                        personajes_masculinos, mas_alto, "altura")
+                imprimir_lista_por_campo(mas_altos, "nombre")
+            case 10:
+                print(
+                        "########                NOMBRE DE SUPERHEROE MAS ALTO FEMENINO               ########\n")
+                mas_alta = buscar_maximo(personajes_femeninos, "altura")
+                mas_altas = guardar_los_maximos(
+                        personajes_femeninos, mas_alta, "altura")
+                imprimir_lista_por_campo(mas_altas, "nombre")
+            case 11:
+                print(
+                        "########                NOMBRE DE SUPERHEROE MAS BAJO               ########\n")
+                mas_bajo = buscar_minimo(personajes_masculinos, "altura")
+                mas_bajos = guardar_los_minimos(
+                        personajes_masculinos, mas_bajo, "altura")
+                imprimir_lista_por_campo(mas_bajos, "nombre")
+            case 12:
+                print(
+                        "########                NOMBRE DE LA SUPERHEROE MAS BAJA             ########\n")
+                mas_baja = buscar_minimo(personajes_femeninos, "altura")
+                mas_bajas = guardar_los_minimos(
+                        personajes_femeninos, mas_baja, "altura")
+                imprimir_lista_por_campo(mas_bajas, "nombre")
+            case 13:
+                print("########                CANTIDAD DE TIPOS DE COLOR DE OJOS             ########")
+            case 14:
+                pass
+            case 16:
+                pass
+            case 17:
+                pass
+            case 18:
+                pass
+            case 19:
+                print("Volviendo al menu principal")
+                break
+
 
 def cambiar_tipo_str_float(lista, campo):
     for personaje in lista:
         if type(personaje[campo]) == str:
             personaje[campo] = float(personaje[campo])
 
-
-def encabezado(mensaje):
-    print(mensaje)
-
-
-def encabezado_menu():
-    encabezado("########                STARK INDUSTRIES                 ########\n\n1 --> Imprimir nombre de todos los superheroes\n2 --> Imprimir nombre y altura de los superheroes\n3 --> El superheroe mas alto\n4 --> El superheroe mas bajo\n5 --> Altura promedio de los superheroes\n6 --> Nombre del superheroe mas alto\n7 --> Nombre del superheroe mas bajo\n8 --> Superheroe mas pesado\n9 --> Superheroe menos pesado\n10 --> Sub menu\n11 --> Salir\n\n")
+def menu():
+    print("########                STARK INDUSTRIES                 ########\n\n1 --> Imprimir nombre de todos los superheroes\n2 --> Imprimir nombre y altura de los superheroes\n3 --> El superheroe mas alto\n4 --> El superheroe mas bajo\n5 --> Altura promedio de los superheroes\n6 --> Nombre del superheroe mas alto\n7 --> Nombre del superheroe mas bajo\n8 --> Superheroe mas pesado\n9 --> Superheroe menos pesado\n10 --> Sub menu\n11 --> Salir\n\n")
+    opcion = pedir_entero_rango("Ingrese una opcion\n",1,11)
+    return opcion
 
 
 def imprimir_lista_por_campo(lista, campo):
@@ -26,12 +163,12 @@ def imprimir_lista(lista):
 
 
 def imprimir_lista_nombres(lista):
-    encabezado("\tLISTA DE NOMBRES DE SUPERHEROES\n")
+    print("\tLISTA DE NOMBRES DE SUPERHEROES\n")
     imprimir_lista_por_campo(lista, "nombre")
 
 
 def imprimir_nombre_altura(lista):
-    encabezado("|\tSUPERHEROE\t   |\t   ALTURA\t|\n")
+    print("|\tSUPERHEROE\t   |\t   ALTURA\t|\n")
     for personaje in lista:
         print(f"|{personaje['nombre']:^26}|{personaje['altura']:^20}|")
 
@@ -106,7 +243,7 @@ def guardar_los_minimos(lista, mas_bajo, campo):
 
 
 def buscar_mas_alto_y_mostrarlo(lista):
-    encabezado("\tSUPERHEROES MAS ALTOS\n")
+    print("\tSUPERHEROES MAS ALTOS\n")
     # busco el personaje mas alto
     altura_maxima = buscar_maximo(lista, "altura")
     # verifico si hay mas de uno con la misma altura maxima y lo guardo en una lista aparte
@@ -116,7 +253,7 @@ def buscar_mas_alto_y_mostrarlo(lista):
 
 
 def buscar_mas_bajo_y_mostrarlo(lista):
-    encabezado("\tSUPERHEROES MAS BAJOS\n")
+    print("\tSUPERHEROES MAS BAJOS\n")
     # busco el personaje mas bajo
     altura_minima = buscar_minimo(lista, "altura")
     # verifico si hay mas de uno con la misma altura minima y lo guardo en una lista aparte
@@ -126,64 +263,71 @@ def buscar_mas_bajo_y_mostrarlo(lista):
 
 
 def calcular_altura_promedio_mostrar(lista):
-    encabezado("\tALTURA PROMEDIO DE LOS SUPERHEROES\n")
+    print("\tALTURA PROMEDIO DE LOS SUPERHEROES\n")
     altura_total = acumular_total_altura(lista)
     promedio_altura = sacar_promedio(altura_total, len(lista))
     mostrar_promedio(promedio_altura)
 
 
 def mostrar_nombre_mas_alto(lista):
-    encabezado("\tNOMBRE DE SUPERHEROES MAS ALTOS\n")
+    print("\tNOMBRE DE SUPERHEROES MAS ALTOS\n")
     altura_maxima = buscar_maximo(lista, "altura")
     lista_aux = guardar_los_maximos(lista, altura_maxima, "altura")
     imprimir_lista_por_campo(lista_aux, "nombre")
 
 
 def mostrar_nombre_mas_bajo(lista):
-    encabezado("\tNOMBRE DE SUPERHEROES MAS BAJOS\n")
+    print("\tNOMBRE DE SUPERHEROES MAS BAJOS\n")
     altura_minima = buscar_minimo(lista, "altura")
     lista_aux = guardar_los_minimos(lista, altura_minima, "altura")
     imprimir_lista_por_campo(lista_aux, "nombre")
 
 
 def buscar_maximo_peso_mostrar(lista):
-    encabezado("\tSUPERHEROES MAS PESADOS\n")
+    print("\tSUPERHEROES MAS PESADOS\n")
     peso_maximo = buscar_maximo(lista, "peso")
     lista_mas_pesados = guardar_los_maximos(lista, peso_maximo, "peso")
     imprimir_lista(lista_mas_pesados)
 
 
 def buscar_minimo_peso_mostrar(lista):
-    encabezado("\tSUPERHEROES MENOS PESADOS\n")
+    print("\tSUPERHEROES MENOS PESADOS\n")
     peso_minimo = buscar_minimo(lista, "peso")
     lista_menos_pesados = guardar_los_minimos(lista, peso_minimo, "peso")
     imprimir_lista(lista_menos_pesados)
 
 
-def menu_personajes(lista, opcion):
+def menu_personajes(lista):
     # CONVIERTO TODAS LAS ALTURAS QUE ESTAN EN STRING LAS PASO A FLOAT
     cambiar_tipo_str_float(lista, "altura")
     cambiar_tipo_str_float(lista, "peso")
+    
+    while True:
+        os.system("cls")
+        match menu():
+            case 1:
+                imprimir_lista_nombres(lista)
+            case 2:
+                imprimir_nombre_altura(lista)
+            case 3:
+                buscar_mas_alto_y_mostrarlo(lista)
+            case 4:
+                buscar_mas_bajo_y_mostrarlo(lista)
+            case 5:
+                calcular_altura_promedio_mostrar(lista)
+            case 6:
+                mostrar_nombre_mas_alto(lista)
+            case 7:
+                mostrar_nombre_mas_bajo(lista)
+            case 8:
+                buscar_maximo_peso_mostrar(lista)
+            case 9:
+                buscar_minimo_peso_mostrar(lista)
+            case 10:
+                menu_desafio_01(lista)
+            case 11:
+                confirmacion = input("Seguro que quiere salir? [n --> para continuar] [cualquier tecla para salir]\n").lower()
+                if confirmacion != "n":
+                    break  
+        os.system("pause")
 
-    match opcion:
-        case 1:
-            imprimir_lista_nombres(lista)
-        case 2:
-            imprimir_nombre_altura(lista)
-        case 3:
-            buscar_mas_alto_y_mostrarlo(lista)
-        case 4:
-            buscar_mas_bajo_y_mostrarlo(lista)
-        case 5:
-            calcular_altura_promedio_mostrar(lista)
-        case 6:
-            mostrar_nombre_mas_alto(lista)
-        case 7:
-            mostrar_nombre_mas_bajo(lista)
-        case 8:
-            buscar_maximo_peso_mostrar(lista)
-        case 9:
-            buscar_minimo_peso_mostrar(lista)
-        case 10:
-            pass
-            # sub_menu(lista)
