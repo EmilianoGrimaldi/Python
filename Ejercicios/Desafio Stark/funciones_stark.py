@@ -1,6 +1,6 @@
 from mis_funciones import *
 
-def menu_desafio_01():
+def menu_01():
         print("""
  ------------->                STARK INDUSTRIES SUB MENU                <-------------""")
         print("""
@@ -39,7 +39,8 @@ def menu_desafio_01(lista):
                 personajes_femeninos.append(personaje)
 
     while True:
-        match menu_desafio_01:   
+        os.system("cls")
+        match menu_01():   
             case 1:
                 print(
                         "########                NOMBRE DE CADA SUPERHEROE MASCULINO               ########\n")
@@ -127,19 +128,68 @@ def menu_desafio_01(lista):
                         personajes_femeninos, mas_baja, "altura")
                 imprimir_lista_por_campo(mas_bajas, "nombre")
             case 13:
-                print("########                CANTIDAD DE TIPOS DE COLOR DE OJOS             ########")
+                print("########                CANTIDAD DE TIPOS DE COLOR DE OJOS             ########\n")
+                color_ojos_cant = {}
+                for personaje in lista:
+                    color_ojos = personaje['color_ojos']
+                    if color_ojos in color_ojos_cant:
+                        color_ojos_cant[color_ojos] += 1
+                    else:
+                        color_ojos_cant[color_ojos] = 1
+                
+                colores_ojos = color_ojos_cant.items()
+                print(" |           COLOR OJOS           |   CANTIDAD   |\n")
+                for color,cantidad in colores_ojos:  
+                    print(" |    {:28s}|{:^14}|".format(color,cantidad))
+                     
             case 14:
-                pass
+                print("########                CANTIDAD DE TIPOS DE COLOR DE PELO             ########\n")
+                color_pelo_cant = {}
+                for personaje in lista:    
+                    color_pelo = personaje['color_pelo']
+                    if color_pelo == "":
+                        color_pelo = "No tiene"
+                        
+                    if color_pelo in color_pelo_cant:
+                        color_pelo_cant[color_pelo] += 1
+                    else:
+                        color_pelo_cant[color_pelo] = 1
+                 
+                colores_pelo = color_pelo_cant.items()
+                #items() retorna una lista de tuplas, donde cada tupla tiene dos elementos: el primero es la clave y el segundo es el valor asociado a esa clave.
+                
+                print(" |         COLOR PELO        |  CANTIDAD  |\n")
+                for color,cantidad in colores_pelo:  
+                    print(" |   {:24s}|{:^12}|".format(color,cantidad))
+            case 15:
+                print("########                CANTIDAD DE TIPOS DE INTELIGENCIA             ########\n")
+                inteligencia_cant = {}
+                for personaje in lista:    
+                    inteligencia = personaje['inteligencia']
+                    if inteligencia == "":
+                        inteligencia = "No tiene"
+                        
+                    if inteligencia in inteligencia_cant:
+                        inteligencia_cant[inteligencia] += 1
+                    else:
+                        inteligencia_cant[inteligencia] = 1
+                 
+                inteligencias = inteligencia_cant.items()
+                #items() retorna una lista de tuplas, donde cada tupla tiene dos elementos: el primero es la clave y el segundo es el valor asociado a esa clave.
+                
+                print(" |          INTELIGENCIA        |  CANTIDAD  |\n")
+                for inteligencia,cantidad in inteligencias:  
+                    print(" |    {:26s}|{:^12}|".format(inteligencia,cantidad))
             case 16:
-                pass
+               " M. Listar todos los superhéroes agrupados por color de ojos."
             case 17:
-                pass
+                "N. Listar todos los superhéroes agrupados por color de pelo."
             case 18:
-                pass
+                "O. Listar todos los superhéroes agrupados por tipo de inteligencia"
             case 19:
                 print("Volviendo al menu principal")
                 break
-
+        os.system("pause")        
 
 def cambiar_tipo_str_float(lista, campo):
     for personaje in lista:
