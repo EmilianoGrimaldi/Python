@@ -181,7 +181,18 @@ def menu_desafio_01(lista):
                 for inteligencia,cantidad in inteligencias:  
                     print(" |    {:26s}|{:^12}|".format(inteligencia,cantidad))
             case 16:
-               " M. Listar todos los superhéroes agrupados por color de ojos."
+                print("########                LISTA SUPERHEROES POR COLOR DE OJOS             ########\n")
+                dict_color_ojos = {}
+                for heroe in lista:    
+                    ojos_color = heroe["color_ojos"]
+                    if  ojos_color not in dict_color_ojos:
+                        dict_color_ojos[ojos_color] = [] 
+                    dict_color_ojos[ojos_color].append(heroe['nombre'])    
+                
+                for color, heroes in dict_color_ojos.items():
+                    print("{:15s}".format(color))
+                    for heroe in heroes:
+                        print(" --> {}".format(heroe))
             case 17:
                 "N. Listar todos los superhéroes agrupados por color de pelo."
             case 18:
