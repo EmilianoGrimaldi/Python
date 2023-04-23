@@ -1,5 +1,10 @@
 from mis_funciones import *
 
+def imprimir_dic_completo(lista):
+    for item in lista:
+        for clave,valor in item.items():
+            print("{} --> {}".format(clave,valor))
+
 def menu_01():
         print("""
  ------------->                STARK INDUSTRIES SUB MENU                <-------------""")
@@ -37,6 +42,12 @@ def menu_desafio_01(lista):
     for personaje in lista:
             if personaje['genero'] == "F":
                 personajes_femeninos.append(personaje)
+    for personaje in lista:
+        if personaje['color_pelo'] == "":
+            personaje['color_pelo'] = "No tiene"
+    for personaje in lista:
+        if personaje['inteligencia'] == "":
+            personaje['inteligencia'] = "No tiene"
 
     while True:
         os.system("cls")
@@ -56,18 +67,18 @@ def menu_desafio_01(lista):
             case 3:
                 print(
                         "########                SUPERHEROE MAS ALTO MASCULINO               ########\n")
+                
                 mas_alto = buscar_maximo(personajes_masculinos, "altura")
                 mas_altos = guardar_los_maximos(
                         personajes_masculinos, mas_alto, "altura")
-                imprimir_lista(mas_altos)
-
+                imprimir_dic_completo(mas_altos)
             case 4:
                 print(
                         "########                SUPERHEROE MAS ALTO FEMENINO               ########\n")
                 mas_alta = buscar_maximo(personajes_femeninos, "altura")
                 mas_altas = guardar_los_maximos(
                         personajes_femeninos, mas_alta, "altura")
-                imprimir_lista(mas_altas)
+                imprimir_dic_completo(mas_altas)
 
             case 5:
                 print(
@@ -75,14 +86,16 @@ def menu_desafio_01(lista):
                 mas_bajo = buscar_minimo(personajes_masculinos, "altura")
                 mas_bajos = guardar_los_minimos(
                         personajes_masculinos, mas_bajo, "altura")
-                imprimir_lista(mas_bajos)
+                imprimir_dic_completo(mas_bajos)
+                
             case 6:
                 print(
                         "########                SUPERHEROE MAS BAJO FEMENINO               ########\n")
                 mas_baja = buscar_minimo(personajes_femeninos, "altura")
                 mas_bajas = guardar_los_minimos(
                         personajes_femeninos, mas_baja, "altura")
-                imprimir_lista(mas_bajas)
+                imprimir_dic_completo(mas_bajas)
+                
             case 7:
                 print(
                         "########                ALTURA PROMEDIO MASCULINO               ########\n")
@@ -137,48 +150,40 @@ def menu_desafio_01(lista):
                     else:
                         color_ojos_cant[color_ojos] = 1
                 
-                colores_ojos = color_ojos_cant.items()
                 print(" |           COLOR OJOS           |   CANTIDAD   |\n")
-                for color,cantidad in colores_ojos:  
+                for color,cantidad in color_ojos_cant.items():  
                     print(" |    {:28s}|{:^14}|".format(color,cantidad))
                      
             case 14:
                 print("########                CANTIDAD DE TIPOS DE COLOR DE PELO             ########\n")
                 color_pelo_cant = {}
                 for personaje in lista:    
-                    color_pelo = personaje['color_pelo']
-                    if color_pelo == "":
-                        color_pelo = "No tiene"
-                        
+                    color_pelo = personaje['color_pelo']       
                     if color_pelo in color_pelo_cant:
                         color_pelo_cant[color_pelo] += 1
                     else:
                         color_pelo_cant[color_pelo] = 1
                  
-                colores_pelo = color_pelo_cant.items()
                 #items() retorna una lista de tuplas, donde cada tupla tiene dos elementos: el primero es la clave y el segundo es el valor asociado a esa clave.
                 
                 print(" |         COLOR PELO        |  CANTIDAD  |\n")
-                for color,cantidad in colores_pelo:  
+                for color,cantidad in color_pelo_cant.items():  
                     print(" |   {:24s}|{:^12}|".format(color,cantidad))
             case 15:
                 print("########                CANTIDAD DE TIPOS DE INTELIGENCIA             ########\n")
                 inteligencia_cant = {}
                 for personaje in lista:    
                     inteligencia = personaje['inteligencia']
-                    if inteligencia == "":
-                        inteligencia = "No tiene"
-                        
+
                     if inteligencia in inteligencia_cant:
                         inteligencia_cant[inteligencia] += 1
                     else:
                         inteligencia_cant[inteligencia] = 1
                  
-                inteligencias = inteligencia_cant.items()
                 #items() retorna una lista de tuplas, donde cada tupla tiene dos elementos: el primero es la clave y el segundo es el valor asociado a esa clave.
                 
                 print(" |          INTELIGENCIA        |  CANTIDAD  |\n")
-                for inteligencia,cantidad in inteligencias:  
+                for inteligencia,cantidad in inteligencia_cant.items():  
                     print(" |    {:26s}|{:^12}|".format(inteligencia,cantidad))
             case 16:
                 print("########                LISTA SUPERHEROES POR COLOR DE OJOS             ########\n")
@@ -194,9 +199,35 @@ def menu_desafio_01(lista):
                     for heroe in heroes:
                         print(" --> {}".format(heroe))
             case 17:
-                "N. Listar todos los superhéroes agrupados por color de pelo."
+                print("########                LISTA SUPERHEROES POR COLOR DE PELO             ########\n")
+                dict_color_pelo = {}
+                for heroe in lista:    
+                    pelo_color = heroe["color_pelo"]
+
+                    if  pelo_color not in dict_color_pelo:
+                        dict_color_pelo[pelo_color] = [] 
+                    dict_color_pelo[pelo_color].append(heroe['nombre'])    
+                
+                for color, heroes in dict_color_pelo.items():
+                    print("{:15s}".format(color))
+                    for heroe in heroes:
+                        print(" --> {}".format(heroe))
             case 18:
-                "O. Listar todos los superhéroes agrupados por tipo de inteligencia"
+                print("########                LISTA SUPERHEROES POR INTELIGENCIA             ########\n")
+                dic_inteligencia = {}
+                for personaje in lista:    
+                    inteligencia = personaje['inteligencia']
+                        
+                    if inteligencia not in dic_inteligencia:
+                        dic_inteligencia[inteligencia] = []
+                    
+                    dic_inteligencia[inteligencia].append(personaje['nombre'])
+
+                for inteligencia, personajes in dic_inteligencia.items():
+                    print("{:15s}".format(inteligencia))
+                    for personaje in personajes:
+                        print(" --> {}".format(personaje))
+
             case 19:
                 print("Volviendo al menu principal")
                 break
