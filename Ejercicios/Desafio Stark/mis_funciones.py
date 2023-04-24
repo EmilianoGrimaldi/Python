@@ -1,4 +1,10 @@
 import os
+def menu(titulo:str,opciones:str)->str:
+    print("####             {}             ####\n".format(titulo))
+    print("-----------------------------------------------------\n")
+    print(opciones)
+    opcion = input("Ingrese una opcion\n")
+    return opcion
 
 def pedir_cadena_alfanumerica(mensaje):
     while True:

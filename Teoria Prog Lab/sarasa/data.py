@@ -1,4 +1,4 @@
-personas = [
+origen_data = [
     {"id": 1, "nombre": "Dalis", "apellido": "Leindecker",
      "email": "dleindecker0@netscape.com", "genero": "M", "edad": 19},
     {"id": 2, "nombre": "Sebastiano", "apellido": "Jakoubec",
