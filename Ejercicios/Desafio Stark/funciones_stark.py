@@ -7,6 +7,185 @@ def imprimir_heroes(lista):
     print(" NOMBRE                  IDENTIDAD                        EMPRESA          ALTURA   PESO    GENERO    COLOR OJOS                COLOR PELO      FUERZA    INTELIGENCIA\n")
     for heroe in lista:
         imprimir_un_heroe(heroe)
+        
+def cambiar_tipo_str_float(lista, campo):
+    for item in lista:
+        if type(item[campo]) == str:
+            item[campo] = float(item[campo])
+
+def imprimir_lista_por_campo(lista, campo):
+    for i in lista:
+        print(i[campo])
+
+def imprimir_lista_nombres_heroes(lista):
+    print("\t LISTA DE NOMBRES DE SUPERHEROES\n")
+    print("        |       NOMBRES DE HEROES       |     \n")
+    for heroe in lista:
+        print("\t|\t{:24s}|".format(heroe["nombre"]))
+    
+
+
+def imprimir_nombre_altura_heroes(lista):
+    print("\t     NOMBRES Y ALTURAS DE HEROES\n")
+    print("|\t    HEROE\t   |\t   ALTURA\t|\n")
+    for heroe in lista:
+        print(f"|{heroe['nombre']:^26}|{heroe['altura']:^20}|")
+
+
+def acumular_total_altura(lista):
+    acumulador = 0
+    for heroe in lista:
+        acumulador += heroe["altura"]
+    return acumulador
+
+
+def sacar_promedio(dividendo, divisor):
+    promedio = dividendo / divisor
+    return promedio
+
+
+def mostrar_promedio(promedio):
+    print("{:.2f}".format(promedio))
+
+
+def cambiar_tipo_campo_dic(lista, tipo_actual, tipo_nuevo, clave_a_cambiar):
+    for item in lista:
+        if type(item[clave_a_cambiar]) == tipo_actual:
+            item[clave_a_cambiar] = tipo_nuevo(item[clave_a_cambiar])
+
+
+def calcular_minimo_campo_dic(lista, campo):
+    flag = True
+    for item in lista:
+        if flag or item[campo] <= minimo:
+            minimo = item[campo]
+            flag = False
+    return minimo
+
+
+def buscar_maximo(lista, campo):
+    flag_max = True
+    for item in lista:
+        if flag_max or item[campo] >= maximo:
+            maximo = item[campo]
+            flag_max = False
+
+    return maximo
+
+
+def buscar_minimo(lista, campo):
+    flag_min = True
+    for item in lista:
+        if flag_min or item[campo] <= minimo:
+            minimo = item[campo]
+            flag_min = False
+
+    return minimo
+
+
+def guardar_los_maximos(lista, campo):
+    aux_maximos = []
+    mas_alto = buscar_maximo(lista, campo)
+    for item in lista:
+        if item[campo] == mas_alto:
+            aux_maximos.append(item)
+
+    return aux_maximos
+
+
+def guardar_los_minimos(lista, campo):
+    aux_minimos = []
+    mas_bajo = buscar_minimo(lista, campo)
+    for item in lista:
+        if item[campo] == mas_bajo:
+            aux_minimos.append(item)
+
+    return aux_minimos
+
+
+def mostrar_heroe_mas_alto(lista):
+    
+    lista_mas_altos = guardar_los_maximos(lista, "altura")
+    if len(lista_mas_altos) == 1:
+        print("\t\t\t\t\t\t\t\tEL HEROE MAS ALTO\n")
+        imprimir_heroes(lista_mas_altos)
+    else:
+        if len(lista_mas_altos) > 1:
+            print("\t\t\t\t\t\t\t\tLOS HEROES MAS ALTOS\n")
+            imprimir_heroes(lista_mas_altos)
+    
+
+
+def mostrar_heroe_mas_bajo(lista):
+    lista_mas_bajos = guardar_los_minimos(lista, "altura")
+    if len(lista_mas_bajos) == 1:
+        print("\t\t\t\t\t\t\t\tEL HEROE MAS BAJO\n")
+        imprimir_heroes(lista_mas_bajos)
+    else:
+        if len(lista_mas_bajos) > 1:
+            print("\t\t\t\t\t\t\t\tLOS HEROES MAS BAJOS\n")
+            imprimir_heroes(lista_mas_bajos)
+
+
+def mostrar_promedio_alturas_heroes(lista):
+    print("\t\t\t\t\t\t\t\tALTURA PROMEDIO DE LOS SUPERHEROES\n")
+    altura_total = acumular_total_altura(lista)
+    promedio_altura = sacar_promedio(altura_total, len(lista))
+    print("La altura promedio de los heroes es {:.2f}".format(promedio_altura))
+
+
+def mostrar_nombre_heroe_mas_alto(lista):
+    
+    lista_aux = guardar_los_maximos(lista, "altura")
+    
+    if len(lista_aux) == 1:
+        print("\t\t\t\t\t\t\t\tNOMBRE DEL HEROE MAS ALTO\n")
+        for heroe in lista_aux:
+            print("El heroe mas alto es {}".format(heroe['nombre']))
+    else:
+        if len(lista_aux) > 1:
+            print("\t\t\t\t\t\t\t\tNOMBRES DE LOS HEROES MAS ALTOS\n")
+            for heroe in lista_aux:
+                print("Los heroes mas altos son \n {}".format(heroe['nombre']))
+
+
+def mostrar_nombre_heroe_mas_bajo(lista):
+    lista_aux = guardar_los_minimos(lista, "altura")
+    
+    if len(lista_aux) == 1:
+        print("\t\t\t\t\t\t\t\tNOMBRE DE HEROE MAS BAJO\n")
+        for heroe in lista_aux:    
+            print("El heroe mas bajo es {}".format(heroe["nombre"]))
+    else:
+        if len(lista_aux) > 1:
+            print("\t\t\t\t\t\t\t\tNOMBRES DE LOS HEROES MAS BAJOS\n")
+            for heroe in lista_aux:
+                print("Los heroes mas bajos son \n {}".format(heroe["nombre"]))
+
+def mostrar_maximo_peso_heroe(lista):
+    lista_mas_pesados = guardar_los_maximos(lista, "peso")
+    if len(lista_mas_pesados) == 1:
+        print("\t\t\t\t\t\t\t\tHEROE MAS PESADO\n")
+        for heroe in lista_mas_pesados:
+            print("El heroe mas pesado es {}".format(heroe["nombre"]))
+    else:
+        if len(lista_mas_pesados) > 1:
+            print("\t\t\t\t\t\t\t\tHEROES MAS PESADOS\n")
+            for heroe in lista_mas_pesados:
+                print("Los heroes mas pesados son \n {}".format(heroe["nombre"]))
+            
+        
+def mostrar_minimo_peso_heroe(lista):
+    lista_menos_pesados = guardar_los_minimos(lista, "peso")
+    if len(lista_menos_pesados) == 1:
+        print("\t\t\t\t\t\t\t\tHEROE MENOS PESADO\n")
+        for heroe in lista_menos_pesados:
+            print("El heroe menos pesado es {}".format(heroe["nombre"]))
+    else:
+        if len(lista_menos_pesados) > 1:
+            print("\t\t\t\t\t\t\t\tHEROES MENOS PESADOS\n")
+            for heroe in lista_menos_pesados:
+                print("Los heroes menos pesados son \n {}".format(heroe["nombre"]))
 
 def ingresar_menu_desafio_01(lista):
     heroes_masculinos = []
@@ -209,187 +388,7 @@ def ingresar_menu_desafio_01(lista):
             case "19":
                 print("Volviendo al menu principal...")
                 break
-        os.system("pause")        
-
-def cambiar_tipo_str_float(lista, campo):
-    for item in lista:
-        if type(item[campo]) == str:
-            item[campo] = float(item[campo])
-
-def imprimir_lista_por_campo(lista, campo):
-    for i in lista:
-        print(i[campo])
-
-def imprimir_lista_nombres_heroes(lista):
-    print("\t LISTA DE NOMBRES DE SUPERHEROES\n")
-    print("        |       NOMBRES DE HEROES       |     \n")
-    for heroe in lista:
-        print("\t|\t{:24s}|".format(heroe["nombre"]))
-    
-
-
-def imprimir_nombre_altura_heroes(lista):
-    print("\t     NOMBRES Y ALTURAS DE HEROES\n")
-    print("|\t    HEROE\t   |\t   ALTURA\t|\n")
-    for heroe in lista:
-        print(f"|{heroe['nombre']:^26}|{heroe['altura']:^20}|")
-
-
-def acumular_total_altura(lista):
-    acumulador = 0
-    for heroe in lista:
-        acumulador += heroe["altura"]
-    return acumulador
-
-
-def sacar_promedio(dividendo, divisor):
-    promedio = dividendo / divisor
-    return promedio
-
-
-def mostrar_promedio(promedio):
-    print("{:.2f}".format(promedio))
-
-
-def cambiar_tipo_campo_dic(lista, tipo_actual, tipo_nuevo, clave_a_cambiar):
-    for item in lista:
-        if type(item[clave_a_cambiar]) == tipo_actual:
-            item[clave_a_cambiar] = tipo_nuevo(item[clave_a_cambiar])
-
-
-def calcular_minimo_campo_dic(lista, campo):
-    flag = True
-    for item in lista:
-        if flag or item[campo] <= minimo:
-            minimo = item[campo]
-            flag = False
-    return minimo
-
-
-def buscar_maximo(lista, campo):
-    flag_max = True
-    for item in lista:
-        if flag_max or item[campo] >= maximo:
-            maximo = item[campo]
-            flag_max = False
-
-    return maximo
-
-
-def buscar_minimo(lista, campo):
-    flag_min = True
-    for item in lista:
-        if flag_min or item[campo] <= minimo:
-            minimo = item[campo]
-            flag_min = False
-
-    return minimo
-
-
-def guardar_los_maximos(lista, campo):
-    aux_maximos = []
-    mas_alto = buscar_maximo(lista, campo)
-    for item in lista:
-        if item[campo] == mas_alto:
-            aux_maximos.append(item)
-
-    return aux_maximos
-
-
-def guardar_los_minimos(lista, campo):
-    aux_minimos = []
-    mas_bajo = buscar_minimo(lista, campo)
-    for item in lista:
-        if item[campo] == mas_bajo:
-            aux_minimos.append(item)
-
-    return aux_minimos
-
-
-def mostrar_heroe_mas_alto(lista):
-    
-    lista_mas_altos = guardar_los_maximos(lista, "altura")
-    if len(lista_mas_altos) == 1:
-        print("\t\t\t\t\t\t\t\tEL HEROE MAS ALTO\n")
-        imprimir_heroes(lista_mas_altos)
-    else:
-        if len(lista_mas_altos) > 1:
-            print("\t\t\t\t\t\t\t\tLOS HEROES MAS ALTOS\n")
-            imprimir_heroes(lista_mas_altos)
-    
-
-
-def mostrar_heroe_mas_bajo(lista):
-    lista_mas_bajos = guardar_los_minimos(lista, "altura")
-    if len(lista_mas_bajos) == 1:
-        print("\t\t\t\t\t\t\t\tEL HEROE MAS BAJO\n")
-        imprimir_heroes(lista_mas_bajos)
-    else:
-        if len(lista_mas_bajos) > 1:
-            print("\t\t\t\t\t\t\t\tLOS HEROES MAS BAJOS\n")
-            imprimir_heroes(lista_mas_bajos)
-
-
-def mostrar_promedio_alturas_heroes(lista):
-    print("\t\t\t\t\t\t\t\tALTURA PROMEDIO DE LOS SUPERHEROES\n")
-    altura_total = acumular_total_altura(lista)
-    promedio_altura = sacar_promedio(altura_total, len(lista))
-    print("La altura promedio de los heroes es {:.2f}".format(promedio_altura))
-
-
-def mostrar_nombre_heroe_mas_alto(lista):
-    
-    lista_aux = guardar_los_maximos(lista, "altura")
-    
-    if len(lista_aux) == 1:
-        print("\t\t\t\t\t\t\t\tNOMBRE DEL HEROE MAS ALTO\n")
-        for heroe in lista_aux:
-            print("El heroe mas alto es {}".format(heroe['nombre']))
-    else:
-        if len(lista_aux) > 1:
-            print("\t\t\t\t\t\t\t\tNOMBRES DE LOS HEROES MAS ALTOS\n")
-            for heroe in lista_aux:
-                print("Los heroes mas altos son \n {}".format(heroe['nombre']))
-
-
-def mostrar_nombre_heroe_mas_bajo(lista):
-    lista_aux = guardar_los_minimos(lista, "altura")
-    
-    if len(lista_aux) == 1:
-        print("\t\t\t\t\t\t\t\tNOMBRE DE HEROE MAS BAJO\n")
-        for heroe in lista_aux:    
-            print("El heroe mas bajo es {}".format(heroe["nombre"]))
-    else:
-        if len(lista_aux) > 1:
-            print("\t\t\t\t\t\t\t\tNOMBRES DE LOS HEROES MAS BAJOS\n")
-            for heroe in lista_aux:
-                print("Los heroes mas bajos son \n {}".format(heroe["nombre"]))
-
-def mostrar_maximo_peso_heroe(lista):
-    lista_mas_pesados = guardar_los_maximos(lista, "peso")
-    if len(lista_mas_pesados) == 1:
-        print("\t\t\t\t\t\t\t\tHEROE MAS PESADO\n")
-        for heroe in lista_mas_pesados:
-            print("El heroe mas pesado es {}".format(heroe["nombre"]))
-    else:
-        if len(lista_mas_pesados) > 1:
-            print("\t\t\t\t\t\t\t\tHEROES MAS PESADOS\n")
-            for heroe in lista_mas_pesados:
-                print("Los heroes mas pesados son \n {}".format(heroe["nombre"]))
-            
-        
-def mostrar_minimo_peso_heroe(lista):
-    lista_menos_pesados = guardar_los_minimos(lista, "peso")
-    if len(lista_menos_pesados) == 1:
-        print("\t\t\t\t\t\t\t\tHEROE MENOS PESADO\n")
-        for heroe in lista_menos_pesados:
-            print("El heroe menos pesado es {}".format(heroe["nombre"]))
-    else:
-        if len(lista_menos_pesados) > 1:
-            print("\t\t\t\t\t\t\t\tHEROES MENOS PESADOS\n")
-            for heroe in lista_menos_pesados:
-                print("Los heroes menos pesados son \n {}".format(heroe["nombre"]))
-
+        os.system("pause")
 
 def menu_heroes(lista,opcion):
     # CONVIERTO TODAS LAS ALTURAS QUE ESTAN EN STRING LAS PASO A FLOAT
@@ -398,7 +397,7 @@ def menu_heroes(lista,opcion):
     
     match opcion:
         case "1":
-            imprimir_lista_nombres_heroes(lista)
+            imprimir_lista_nombres_heroes(lista)    
         case "2":
             imprimir_nombre_altura_heroes(lista)
         case "3":
