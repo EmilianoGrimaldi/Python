@@ -1,4 +1,5 @@
-from data_stark import lista_personajes
+from data_stark import *
+from data_stark_testing import *
 from funciones_stark import *
 
 while True:
