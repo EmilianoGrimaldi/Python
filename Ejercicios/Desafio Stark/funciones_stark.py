@@ -274,6 +274,49 @@ def nombrar_menor_altura_genero(lista:list,genero:str):
                 print("Las heroinas mas bajas son")
                 imprimir_lista_por_campo(lista_alturas,"nombre")
 
+def contar_items_categoria(lista,clave):
+    #Creo un dic vacio para ir guardando los items como clave y la cantidad como valor
+    dic_aux = {}
+    
+    for item in lista:
+        #Hago una busqueda y voy guardando el item en una var
+        item_guardado = item[clave].capitalize() # Primer letra en mayuscula el resto minuscula
+        #Pregunto si ese item existe dentro del diccionario
+        if item_guardado in dic_aux:
+            #si existe le sumo 1 al valor de ese item
+            dic_aux[item_guardado] += 1
+        else:
+            #sino existe creo la clave de ese item y le asigno el valor 1 (para indicar que es el primer item)
+            dic_aux[item_guardado] = 1
+    
+    return dic_aux
+
+def listar_cantidad_color_ojos(lista):
+    print("\t\t\t\t\t     ########                CANTIDAD DE TIPOS DE COLOR DE OJOS             ########\n")
+    
+    color_ojos = contar_items_categoria(lista,"color_ojos")  
+    
+    print("\t\t\t\t\t\t\t    |           COLOR OJOS           |   CANTIDAD   |\n")
+    #items tranforma ese diccionario en una lista de tuplas clave : valor
+    for color,cantidad in color_ojos.items():  
+        print("\t\t\t\t\t\t\t    |\t {:28s}|\t    {:2d}\t    |".format(color,cantidad))
+        
+def listar_cantidad_color_pelo(lista):
+    print("\t\t\t\t\t ########                CANTIDAD DE TIPOS DE COLOR DE PELO             ########\n")
+    color_pelo = contar_items_categoria(lista,"color_pelo")
+    
+    print("\t\t\t\t\t\t\t    |         COLOR PELO        |  CANTIDAD  |\n")
+    for color,cantidad in color_pelo.items():  
+        print("\t\t\t\t\t\t\t    |   {:24s}|{:^12}|".format(color,cantidad))
+ 
+def listar_cantidad_tipo_inteligencia(lista): 
+    print("\t\t\t\t\t ########                CANTIDAD DE TIPOS DE INTELIGENCIA             ########\n")
+    
+    tipo_inteligencia = contar_items_categoria(lista,"inteligencia")
+    
+    print("\t\t\t\t\t\t\t    |          INTELIGENCIA        |  CANTIDAD  |\n")
+    for inteligencia,cantidad in tipo_inteligencia.items():
+        print("\t\t\t\t\t\t\t    |    {:26s}|\t {:2d}\t|".format(inteligencia,cantidad))
 
 def ingresar_menu_desafio_01(lista):
 
@@ -312,63 +355,17 @@ def ingresar_menu_desafio_01(lista):
             case "12":
                 nombrar_menor_altura_genero(lista,"F")
             case "13":
-                print("\t\t\t\t\t     ########                CANTIDAD DE TIPOS DE COLOR DE OJOS             ########\n")
-                #Creo un dic vacio para ir guardando los colores como clave y la cantidad como valor
-                color_ojos_cant = {}
-                
-                for heroe in lista:
-                    #Hago una busqueda y voy guardando el color de ojos de ese heroe
-                    color_ojos = heroe['color_ojos'].lower()
-                    #Pregunto si ese color existe dentro del diccionario
-                    if color_ojos in color_ojos_cant:
-                        #si existe le sumo 1 al valor de ese color
-                        color_ojos_cant[color_ojos] += 1
-                    else:
-                        #sino existe creo la clave de ese color y le asigno el valor 1 (para indicar que es el primer color)
-                        color_ojos_cant[color_ojos] = 1
-                
-                print("\t\t\t\t\t\t\t    |           COLOR OJOS           |   CANTIDAD   |\n")
-                #items tranforma ese diccionario en una lista de tuplas clave : valor
-                for color,cantidad in color_ojos_cant.items():  
-                    print("\t\t\t\t\t\t\t    |\t {:28s}|\t    {:2d}\t    |".format(color,cantidad))
-                     
+                listar_cantidad_color_ojos(lista)   
             case "14":
-                print("\t\t\t\t\t ########                CANTIDAD DE TIPOS DE COLOR DE PELO             ########\n")
-                color_pelo_cant = {}
-                for heroe in lista:    
-                    color_pelo = heroe['color_pelo'].lower()       
-                    if color_pelo in color_pelo_cant:
-                        color_pelo_cant[color_pelo] += 1
-                    else:
-                        color_pelo_cant[color_pelo] = 1
-                 
-                #items() retorna una lista de tuplas, donde cada tupla tiene dos elementos: el primero es la clave y el segundo es el valor asociado a esa clave.
-                
-                print("\t\t\t\t\t\t\t    |         COLOR PELO        |  CANTIDAD  |\n")
-                for color,cantidad in color_pelo_cant.items():  
-                    print("\t\t\t\t\t\t\t    |   {:24s}|{:^12}|".format(color,cantidad))
+                listar_cantidad_color_pelo(lista)
             case "15":
-                print("\t\t\t\t\t ########                CANTIDAD DE TIPOS DE INTELIGENCIA             ########\n")
-                inteligencia_cant = {}
-                for heroe in lista:    
-                    inteligencia = heroe['inteligencia'].lower()
-
-                    if inteligencia in inteligencia_cant:
-                        inteligencia_cant[inteligencia] += 1
-                    else:
-                        inteligencia_cant[inteligencia] = 1
-                 
-                #items() retorna una lista de tuplas, donde cada tupla tiene dos elementos: el primero es la clave y el segundo es el valor asociado a esa clave.
-                
-                print("\t\t\t\t\t\t\t    |          INTELIGENCIA        |  CANTIDAD  |\n")
-                for inteligencia,cantidad in inteligencia_cant.items():  
-                    print("\t\t\t\t\t\t\t    |    {:26s}|\t {:2d}\t|".format(inteligencia,cantidad))
+                listar_cantidad_tipo_inteligencia(lista)
             case "16":
                 print("\t\t\t########                LISTA SUPERHEROES POR COLOR DE OJOS             ########\n")
                 dict_color_ojos = {}
                 #creo un diccionario vacio para ir guardando el color como clave y una lista de nombres como valor
                 for heroe in lista:    
-                    ojos_color = heroe["color_ojos"].lower()
+                    ojos_color = heroe["color_ojos"].capitalize()
                     #guardo el color de ojos de ese heroe
                     if  ojos_color not in dict_color_ojos:
                     #pregunto si el color de ojos del heroe NO ESTA en el diccionario
@@ -386,7 +383,7 @@ def ingresar_menu_desafio_01(lista):
                 print("\t\t\t########                LISTA SUPERHEROES POR COLOR DE PELO             ########\n")
                 dict_color_pelo = {}
                 for heroe in lista:    
-                    pelo_color = heroe["color_pelo"].lower()
+                    pelo_color = heroe["color_pelo"].capitalize()
 
                     if  pelo_color not in dict_color_pelo:
                         dict_color_pelo[pelo_color] = [] 
@@ -400,7 +397,7 @@ def ingresar_menu_desafio_01(lista):
                 print("\t\t\t########                LISTA SUPERHEROES POR INTELIGENCIA             ########\n")
                 dic_inteligencia = {}
                 for heroe in lista:    
-                    inteligencia = heroe['inteligencia'].lower()
+                    inteligencia = heroe['inteligencia'].capitalize()
                         
                     if inteligencia not in dic_inteligencia:
                         dic_inteligencia[inteligencia] = []
