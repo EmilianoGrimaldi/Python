@@ -24,14 +24,14 @@ def imprimir_nombre_altura_heroes(lista):
     for heroe in lista:
         print(f"|{heroe['nombre']:^26}|{heroe['altura']:^20}|")
 
-def acumular_total_altura(lista, clave):
+def acumulador(lista, clave):
     acumulador = 0
-    for heroe in lista:
-        acumulador += heroe[clave]
+    for item in lista:
+        acumulador += item[clave]
     return acumulador
 
-def sacar_promedio(dividendo, divisor):
-    promedio = dividendo / divisor
+def sacar_promedio(total, cantidad):
+    promedio = total / cantidad
     return promedio
 
 def mostrar_promedio(promedio):
@@ -109,7 +109,7 @@ def mostrar_heroe_mas_bajo(lista):
 
 def mostrar_promedio_alturas_heroes(lista):
     print("\t\t\t\t\t\t\t\tALTURA PROMEDIO DE LOS SUPERHEROES\n")
-    altura_total = acumular_total_altura(lista,"altura")
+    altura_total = acumulador(lista,"altura")
     promedio_altura = sacar_promedio(altura_total, len(lista))
     print("La altura promedio de los heroes es {:.2f}".format(promedio_altura))
 
@@ -219,7 +219,7 @@ def listar_mas_bajo_genero(lista:list, genero:str):
 
 def promediar_altura_genero(lista:list,genero:str):
     heroes = filtrar_heroes(lista,"genero",genero)
-    acumulador_edad = acumular_total_altura(heroes,"altura")
+    acumulador_edad = acumulador(heroes,"altura")
     promedio = sacar_promedio(acumulador_edad, len(heroes))
     if genero == "M":
         print("\t\t\t\t\t\t\t########                ALTURA PROMEDIO HEROES               ########\n")
@@ -274,7 +274,7 @@ def nombrar_menor_altura_genero(lista:list,genero:str):
                 print("Las heroinas mas bajas son")
                 imprimir_lista_por_campo(lista_alturas,"nombre")
 
-def contar_items_categoria(lista,clave):
+def contar_items_categoria(lista:list,clave:str)->dict:
     #Creo un dic vacio para ir guardando los items como clave y la cantidad como valor
     dic_aux = {}
     
@@ -291,7 +291,7 @@ def contar_items_categoria(lista,clave):
     
     return dic_aux
 
-def listar_cantidad_color_ojos(lista):
+def listar_cantidad_color_ojos(lista:list)-> None:
     print("\t\t\t\t\t     ########                CANTIDAD DE TIPOS DE COLOR DE OJOS             ########\n")
     
     color_ojos = contar_items_categoria(lista,"color_ojos")  
@@ -301,7 +301,7 @@ def listar_cantidad_color_ojos(lista):
     for color,cantidad in color_ojos.items():  
         print("\t\t\t\t\t\t\t    |\t {:28s}|\t    {:2d}\t    |".format(color,cantidad))
         
-def listar_cantidad_color_pelo(lista):
+def listar_cantidad_color_pelo(lista:list)->None:
     print("\t\t\t\t\t ########                CANTIDAD DE TIPOS DE COLOR DE PELO             ########\n")
     color_pelo = contar_items_categoria(lista,"color_pelo")
     
@@ -309,7 +309,7 @@ def listar_cantidad_color_pelo(lista):
     for color,cantidad in color_pelo.items():  
         print("\t\t\t\t\t\t\t    |   {:24s}|{:^12}|".format(color,cantidad))
  
-def listar_cantidad_tipo_inteligencia(lista): 
+def listar_cantidad_tipo_inteligencia(lista:list)->None: 
     print("\t\t\t\t\t ########                CANTIDAD DE TIPOS DE INTELIGENCIA             ########\n")
     
     tipo_inteligencia = contar_items_categoria(lista,"inteligencia")
@@ -318,15 +318,49 @@ def listar_cantidad_tipo_inteligencia(lista):
     for inteligencia,cantidad in tipo_inteligencia.items():
         print("\t\t\t\t\t\t\t    |    {:26s}|\t {:2d}\t|".format(inteligencia,cantidad))
 
+def inicializar_clave_vacia(lista:list,clave:str,cadena_inicializar:str)-> None:
+    for heroe in lista:
+        if heroe[clave] == "":
+            heroe[clave] = cadena_inicializar
+
+def nombrar_por_categoria(lista:list, clave:str)-> dict:
+    dic_aux = {}
+    #creo un diccionario vacio para ir guardando el item como clave principal y una lista como valor donde voy a guardar las claves secundarias
+    for item in lista:    
+        item_aux = item[clave].capitalize()
+        #guardo la clave principal del item para compararlo luego
+        if item_aux not in dic_aux:
+        #pregunto si la clave principal del item NO ESTA dentro del diccionario
+            dic_aux[item_aux] = []
+            #Si la clave principal del item no existe dentro del diccionario, lo creo y le asigno una lista vacia donde voy a guardar los valores
+        dic_aux[item_aux].append(item)
+        #agrego el item a la lista de esa clave principal
+    
+    return dic_aux #devuelvo el diccionario modificado con la clave principal como categoria y la clave secundaria como listado que pertenecen a esa categoria
+
+# def mostrar_por_categoria(lista:list, diccionario:dict, especificador_de_formato:str)-> None:
+#     for item, items in diccionario.items():
+#         print(especificador_de_formato.format(item))
+#         for item_dos in items:
+#             print(" --> {}".format(item_dos))
+#         imprimir_heroes
+
+# def listar_heroes_por_color_ojos(lista:list)-> None:
+#     print("\t\t\t########                LISTA HEROES POR COLOR DE OJOS             ########\n")
+#     heroes_por_color_ojos = nombrar_por_categoria(lista,"color_ojos")
+#     mostrar_por_categoria(lista, heroes_por_color_ojos,"{:15s}")
+
+# def listar_heroes_por_color_pelo(lista:list)-> None:
+#     print("\t\t\t########                LISTA HEROES POR COLOR DE PELO             ########\n")
+#     heroes_por_color_pelo = nombrar_por_categoria(lista,"color_pelo")
+#     mostrar_por_categoria(lista, heroes_por_color_pelo,"{:15s}")
+    
+# def listar_heroes_por_inteligencia(lista)-> None:
+#     print("\t\t\t########                LISTA HEROES POR INTELIGENCIA             ########\n")
+#     heroes_por_inteligencia = nombrar_por_categoria(lista,"inteligencia")
+#     mostrar_por_categoria(lista, heroes_por_inteligencia,"{:15s}")
+
 def ingresar_menu_desafio_01(lista):
-
-    for heroe in lista:
-        if heroe['color_pelo'] == "":
-            heroe['color_pelo'] = "No tiene"
-    for heroe in lista:
-        if heroe['inteligencia'] == "":
-            heroe['inteligencia'] = "No tiene"
-
     while True:
         os.system("cls")
         match menu("STARK INDUSTRIES SUB MENU"," 1 --> Imprimir nombre de todos los superheroes M\n 2 --> Imprimir nombre de todos los superheroes F\n 3 --> El superhéroe más alto de género M\n 4 --> El superhéroe más alto de género F\n 5 --> El superhéroe más bajo de género M\n 6 --> El superhéroe más bajo de género F\n 7 --> Altura promedio de los superhéroes de género M\n 8 --> Altura promedio de los superhéroes de género F\n 9 --> Nombre del superhéroe más alto de género M\n10 --> Nombre del superhéroe más alto de género F\n11 --> Nombre del superhéroe más bajo de género M\n12 --> Nombre del superhéroe más bajo de género F\n13 --> Cuántos superhéroes tienen cada tipo de color de ojos\n14 --> Cuántos superhéroes tienen cada tipo de color de pelo\n15 --> Cuántos superhéroes tienen cada tipo de inteligencia\n16 --> Listar todos los superhéroes agrupados por color de ojos\n17 --> Listar todos los superhéroes agrupados por color de pelo\n18 --> Listar todos los superhéroes agrupados por tipo de inteligencia\n19 --> Volver\n\n"):   
@@ -361,54 +395,27 @@ def ingresar_menu_desafio_01(lista):
             case "15":
                 listar_cantidad_tipo_inteligencia(lista)
             case "16":
-                print("\t\t\t########                LISTA SUPERHEROES POR COLOR DE OJOS             ########\n")
-                dict_color_ojos = {}
-                #creo un diccionario vacio para ir guardando el color como clave y una lista de nombres como valor
-                for heroe in lista:    
-                    ojos_color = heroe["color_ojos"].capitalize()
-                    #guardo el color de ojos de ese heroe
-                    if  ojos_color not in dict_color_ojos:
-                    #pregunto si el color de ojos del heroe NO ESTA en el diccionario
-                        dict_color_ojos[ojos_color] = []
-                        #Si el color no existe dentro del diccionario, lo creo y le asigno una lista vacia donde voy a guardar los nombres de los heroes 
-                    dict_color_ojos[ojos_color].append(heroe['nombre'])
-                    #le agrego el nombre del heroe a lista de ese color    
-                
-                
-                for color, heroes in dict_color_ojos.items():
-                    print("{:15s}".format(color))
-                    for heroe in heroes:
-                        print(" --> {}".format(heroe))
-            case "17":
-                print("\t\t\t########                LISTA SUPERHEROES POR COLOR DE PELO             ########\n")
-                dict_color_pelo = {}
-                for heroe in lista:    
-                    pelo_color = heroe["color_pelo"].capitalize()
-
-                    if  pelo_color not in dict_color_pelo:
-                        dict_color_pelo[pelo_color] = [] 
-                    dict_color_pelo[pelo_color].append(heroe['nombre'])    
-                
-                for color, heroes in dict_color_pelo.items():
-                    print("{:15s}".format(color))
-                    for heroe in heroes:
-                        print(" --> {}".format(heroe))
-            case "18":
-                print("\t\t\t########                LISTA SUPERHEROES POR INTELIGENCIA             ########\n")
-                dic_inteligencia = {}
-                for heroe in lista:    
-                    inteligencia = heroe['inteligencia'].capitalize()
+                #Listar todos los superhéroes agrupados por color de ojos.
+                dic_aux = {}
+                for heroe in lista:
+                    color_ojos = heroe["color_ojos"].capitalize()
+                    if color_ojos in dic_aux:
+                         dic_aux[color_ojos].append(heroe)
+                    else:
+                        dic_aux[color_ojos] = [heroe]
                         
-                    if inteligencia not in dic_inteligencia:
-                        dic_inteligencia[inteligencia] = []
-                    
-                    dic_inteligencia[inteligencia].append(heroe['nombre'])
-
-                for inteligencia, heroes in dic_inteligencia.items():
-                    print("{:15s}".format(inteligencia))
+                for color, heroes in dic_aux.items():
+                    print(f"{color}")
                     for heroe in heroes:
-                        print(" --> {}".format(heroe))
-
+                        print(f'--> {heroe["nombre"]}')
+                
+                # listar_heroes_por_color_ojos(lista)
+            case "17":
+                pass
+                # listar_heroes_por_color_pelo(lista)
+            case "18":
+                pass
+                # listar_heroes_por_inteligencia(lista)
             case "19":
                 print("Volviendo al menu principal...")
                 break
@@ -418,6 +425,9 @@ def menu_heroes(lista,opcion):
     # CONVIERTO TODAS LAS ALTURAS QUE ESTAN EN STRING LAS PASO A FLOAT
     cambiar_tipo_campo_dic(lista,"altura",str,float)
     cambiar_tipo_campo_dic(lista,"peso",str,float)
+    # Inicializo las claves vacias con "No tiene"
+    inicializar_clave_vacia(lista,"color_pelo","No tiene")
+    inicializar_clave_vacia(lista,"inteligencia","No tiene")
     
     match opcion:
         case "1":
