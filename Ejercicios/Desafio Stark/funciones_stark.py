@@ -1,7 +1,7 @@
 from mis_funciones import *
 
 def encabezado_campos_heroes():
-    print(" NOMBRE                  IDENTIDAD                        EMPRESA          ALTURA   PESO    GENERO    COLOR OJOS                COLOR PELO      FUERZA    INTELIGENCIA\n")
+    print("\n NOMBRE                  IDENTIDAD                        EMPRESA          ALTURA   PESO    GENERO    COLOR OJOS                COLOR PELO      FUERZA    INTELIGENCIA\n")
 
 def imprimir_un_heroe(heroe):
     print(f" {heroe['nombre']:23s} {heroe['identidad']:32s} {heroe['empresa']:15s} {heroe['altura']:7}  {heroe['peso']:6}      {heroe['genero']:7s} {heroe['color_ojos']:26s} {heroe['color_pelo']:15s} {heroe['fuerza']:9s} {heroe['inteligencia']}")
@@ -339,21 +339,22 @@ def filtrar_heroe_categoria(lista:list, clave:str)-> dict:
 
 def mostrar_heroe_categoria(lista:list, diccionario:dict)-> None:
     for item, valores in diccionario.items():
-        print(f"\n\t\t\t\t\t\t\t\t\t{item}\n")
+        print(f"\n\t\t\t\t\t\t\t\t\t\t{item}")
+        encabezado_campos_heroes()
         imprimir_heroes(valores)
 
 def listar_heroes_por_color_ojos(lista:list)-> None:
-    print("\t\t\t########                LISTA HEROES POR COLOR DE OJOS             ########\n")
+    print("\t\t\t\t\t\t########                LISTA HEROES POR COLOR DE OJOS             ########")
     heroes_por_color_ojos = filtrar_heroe_categoria(lista,"color_ojos")
     mostrar_heroe_categoria(lista, heroes_por_color_ojos)
 
 def listar_heroes_por_color_pelo(lista:list)-> None:
-    print("\t\t\t########                LISTA HEROES POR COLOR DE PELO             ########\n")
+    print("\t\t\t\t\t\t########                LISTA HEROES POR COLOR DE PELO             ########")
     heroes_por_color_pelo = filtrar_heroe_categoria(lista,"color_pelo")
     mostrar_heroe_categoria(lista, heroes_por_color_pelo)
     
 def listar_heroes_por_inteligencia(lista)-> None:
-    print("\t\t\t########                LISTA HEROES POR INTELIGENCIA             ########\n")
+    print("\t\t\t\t\t\t########                LISTA HEROES POR INTELIGENCIA             ########")
     heroes_por_inteligencia = filtrar_heroe_categoria(lista,"inteligencia")
     mostrar_heroe_categoria(lista, heroes_por_inteligencia)
 
