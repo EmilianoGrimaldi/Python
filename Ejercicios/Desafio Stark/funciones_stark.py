@@ -1,8 +1,10 @@
 from mis_funciones import *
 
-def imprimir_un_heroe(heroe):
+def encabezado_campos_heroes():
     print(" NOMBRE                  IDENTIDAD                        EMPRESA          ALTURA   PESO    GENERO    COLOR OJOS                COLOR PELO      FUERZA    INTELIGENCIA\n")
-    print(f" {heroe['nombre']:23s} {heroe['identidad']:32s} {heroe['empresa']:15s} {heroe['altura']:7}  {heroe['peso']:6}      {heroe['genero']:7s} {heroe['color_ojos']:26s} {heroe['color_pelo']:15s} {heroe['fuerza']:9s} {heroe['inteligencia']} ")
+
+def imprimir_un_heroe(heroe):
+    print(f" {heroe['nombre']:23s} {heroe['identidad']:32s} {heroe['empresa']:15s} {heroe['altura']:7}  {heroe['peso']:6}      {heroe['genero']:7s} {heroe['color_ojos']:26s} {heroe['color_pelo']:15s} {heroe['fuerza']:9s} {heroe['inteligencia']}")
 
 def imprimir_heroes(lista):
     for heroe in lista:
@@ -323,42 +325,37 @@ def inicializar_clave_vacia(lista:list,clave:str,cadena_inicializar:str)-> None:
         if heroe[clave] == "":
             heroe[clave] = cadena_inicializar
 
-def nombrar_por_categoria(lista:list, clave:str)-> dict:
-    dic_aux = {}
-    #creo un diccionario vacio para ir guardando el item como clave principal y una lista como valor donde voy a guardar las claves secundarias
-    for item in lista:    
-        item_aux = item[clave].capitalize()
-        #guardo la clave principal del item para compararlo luego
-        if item_aux not in dic_aux:
-        #pregunto si la clave principal del item NO ESTA dentro del diccionario
-            dic_aux[item_aux] = []
-            #Si la clave principal del item no existe dentro del diccionario, lo creo y le asigno una lista vacia donde voy a guardar los valores
-        dic_aux[item_aux].append(item)
-        #agrego el item a la lista de esa clave principal
+def filtrar_heroe_categoria(lista:list, clave:str)-> dict:
+    dic = {}
     
-    return dic_aux #devuelvo el diccionario modificado con la clave principal como categoria y la clave secundaria como listado que pertenecen a esa categoria
+    for item in lista:
+        value = item[clave].capitalize()
+        if value in dic:
+            dic[value].append(item)
+        else:
+            dic[value] = [item]
+            
+    return dic
 
-# def mostrar_por_categoria(lista:list, diccionario:dict, especificador_de_formato:str)-> None:
-#     for item, items in diccionario.items():
-#         print(especificador_de_formato.format(item))
-#         for item_dos in items:
-#             print(" --> {}".format(item_dos))
-#         imprimir_heroes
+def mostrar_heroe_categoria(lista:list, diccionario:dict)-> None:
+    for item, valores in diccionario.items():
+        print(f"\n\t\t\t\t\t\t\t\t\t{item}\n")
+        imprimir_heroes(valores)
 
-# def listar_heroes_por_color_ojos(lista:list)-> None:
-#     print("\t\t\t########                LISTA HEROES POR COLOR DE OJOS             ########\n")
-#     heroes_por_color_ojos = nombrar_por_categoria(lista,"color_ojos")
-#     mostrar_por_categoria(lista, heroes_por_color_ojos,"{:15s}")
+def listar_heroes_por_color_ojos(lista:list)-> None:
+    print("\t\t\t########                LISTA HEROES POR COLOR DE OJOS             ########\n")
+    heroes_por_color_ojos = filtrar_heroe_categoria(lista,"color_ojos")
+    mostrar_heroe_categoria(lista, heroes_por_color_ojos)
 
-# def listar_heroes_por_color_pelo(lista:list)-> None:
-#     print("\t\t\t########                LISTA HEROES POR COLOR DE PELO             ########\n")
-#     heroes_por_color_pelo = nombrar_por_categoria(lista,"color_pelo")
-#     mostrar_por_categoria(lista, heroes_por_color_pelo,"{:15s}")
+def listar_heroes_por_color_pelo(lista:list)-> None:
+    print("\t\t\t########                LISTA HEROES POR COLOR DE PELO             ########\n")
+    heroes_por_color_pelo = filtrar_heroe_categoria(lista,"color_pelo")
+    mostrar_heroe_categoria(lista, heroes_por_color_pelo)
     
-# def listar_heroes_por_inteligencia(lista)-> None:
-#     print("\t\t\t########                LISTA HEROES POR INTELIGENCIA             ########\n")
-#     heroes_por_inteligencia = nombrar_por_categoria(lista,"inteligencia")
-#     mostrar_por_categoria(lista, heroes_por_inteligencia,"{:15s}")
+def listar_heroes_por_inteligencia(lista)-> None:
+    print("\t\t\t########                LISTA HEROES POR INTELIGENCIA             ########\n")
+    heroes_por_inteligencia = filtrar_heroe_categoria(lista,"inteligencia")
+    mostrar_heroe_categoria(lista, heroes_por_inteligencia)
 
 def ingresar_menu_desafio_01(lista):
     while True:
@@ -395,27 +392,11 @@ def ingresar_menu_desafio_01(lista):
             case "15":
                 listar_cantidad_tipo_inteligencia(lista)
             case "16":
-                #Listar todos los superhéroes agrupados por color de ojos.
-                dic_aux = {}
-                for heroe in lista:
-                    color_ojos = heroe["color_ojos"].capitalize()
-                    if color_ojos in dic_aux:
-                         dic_aux[color_ojos].append(heroe)
-                    else:
-                        dic_aux[color_ojos] = [heroe]
-                        
-                for color, heroes in dic_aux.items():
-                    print(f"{color}")
-                    for heroe in heroes:
-                        print(f'--> {heroe["nombre"]}')
-                
-                # listar_heroes_por_color_ojos(lista)
+                listar_heroes_por_color_ojos(lista)
             case "17":
-                pass
-                # listar_heroes_por_color_pelo(lista)
+                listar_heroes_por_color_pelo(lista)
             case "18":
-                pass
-                # listar_heroes_por_inteligencia(lista)
+                listar_heroes_por_inteligencia(lista)
             case "19":
                 print("Volviendo al menu principal...")
                 break
