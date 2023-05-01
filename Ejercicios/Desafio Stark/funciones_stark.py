@@ -404,10 +404,10 @@ def ingresar_menu_desafio_01(lista):
         os.system("pause")
 
 def menu_heroes(lista,opcion):
-    # CONVIERTO TODAS LAS ALTURAS QUE ESTAN EN STRING LAS PASO A FLOAT
+    # CONVIERTO TODAS LAS ALTURAS/PESO QUE ESTAN EN STRING LAS PASO A FLOAT
     cambiar_tipo_campo_dic(lista,"altura",str,float)
     cambiar_tipo_campo_dic(lista,"peso",str,float)
-    # Inicializo las claves vacias con "No tiene"
+    # Inicializo los valores de las claves vacias con "No tiene"
     inicializar_clave_vacia(lista,"color_pelo","No tiene")
     inicializar_clave_vacia(lista,"inteligencia","No tiene")
     
