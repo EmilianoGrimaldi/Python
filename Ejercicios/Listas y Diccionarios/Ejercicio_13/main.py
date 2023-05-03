@@ -5,5 +5,6 @@ from funciones_peliculas import *
 
 duracion_maxima = input("Ingrese la duracion maxima de la pelicula\n")
 lista_peliculas_duracion = filtrar_pelicula_duracion(lista_peliculas,duracion_maxima,"duracion","titulo")
-lista_peliculas_duracion.sort()
-mostrar_titulos(lista_peliculas_duracion,"TITULO")
+lista_ordenada_por_titulo = sorted(lista_peliculas_duracion)
+# lista_peliculas_duracion.sort()
+mostrar_titulos(lista_ordenada_por_titulo,"TITULO")
