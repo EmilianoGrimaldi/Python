@@ -31,3 +31,11 @@ LIMITES
 # patron = re.compile("\d")
 # lista = patron.findall(frase)
 # print(lista)
+
+patron_entero = re.compile("[0-9]+")
+patron_flotante = re.compile("[0-9]+.[0-9]+")
+match = patron_flotante.match("12.12") #buscar si en el texto hay alguna coincidencia de ese patron
+if match:
+    print("flotante valido: ",match.group())
+else:
+    print("No hubo coincidencias")
