@@ -327,8 +327,6 @@
 # # Output: ["hola", "mundo"]
 # ```
 
-# ¡Claro, continúo con los métodos para cadenas en Python!
-
 # 38. startswith(prefix[, start[, end]]): Devuelve True si la cadena comienza con el prefijo especificado. Se pueden especificar los índices de inicio y fin de la búsqueda.
 # Ejemplo:
 # ```
