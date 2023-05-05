@@ -9,20 +9,24 @@ def verificar_tarjeta_credito(numero_tarjeta:int)->int:
     Returns:
         int: Numero de tarjeta con asteristicos y los ultimos cuatro digitos literales
     """
-    flag_bien = False
     ultimos_cuatro_digitos = ""
-
+    salio_mal = False
     if len(numero_tarjeta) == 16:
         if numero_tarjeta.isdigit():
-            flag_bien =  True
+            for i in range(len(numero_tarjeta)):
+                if i+1 > 12:
+                    ultimos_cuatro_digitos += numero_tarjeta[i]
+                    cadena_completa = f"**** **** **** {ultimos_cuatro_digitos}"
+            return cadena_completa
         else:
             print("No son digitos numericos")
+            return salio_mal
     else:
         print("Error! No tiene 16 digitos")
-    
-    if flag_bien:
-        print(ultimos_cuatro_digitos)
-        # for i in range(len(numero_tarjeta)):
-        #     ultimos_cuatro_digitos += numero_tarjeta[i]
+        return salio_mal
 
-verificar_tarjeta_credito("1234456789102000")
+
+numero_tarjeta = "1234456789102000"
+
+if verificar_tarjeta_credito(numero_tarjeta):
+    print(verificar_tarjeta_credito(numero_tarjeta))
