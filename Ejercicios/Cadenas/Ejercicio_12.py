@@ -11,6 +11,7 @@ def verificar_tarjeta_credito(numero_tarjeta:int)->int:
     """
     ultimos_cuatro_digitos = ""
     salio_mal = False
+    
     if len(numero_tarjeta) == 16:
         if numero_tarjeta.isdigit():
             for i in range(len(numero_tarjeta)):
