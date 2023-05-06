@@ -12,4 +12,16 @@ def palabras_filtradas_largo(cadena:str)->list:
         list: Lista filtrada con las palabras
     """
 
-    cadenas = split(" ",cadenas)
+    cadenas = split(" ",cadena)
+    patron = compile(f"^[A-Za-z]+$")
+    lista_filtrada_largo = []
+    
+    for cadena in cadenas:
+        if match(patron,cadena) and len(cadena) >= 3 and len(cadena) <= 6 :
+            lista_filtrada_largo.append(cadena)
+    
+    return lista_filtrada_largo
+            
+    
+
+print(palabras_filtradas_largo("Hola mundo"))
