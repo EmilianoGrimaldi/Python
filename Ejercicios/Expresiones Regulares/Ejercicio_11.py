@@ -10,14 +10,9 @@ def filtrar_vocal(texto:str)->list:
     Returns:
         list: Una lista con todas las palabras filtradas que comienzan con vocal
     """
-    lista_palabras = split(" ",texto)
-    patron_vocales = compile("^[aeiouAEIOU]")
-    lista_palabras_filtradas = []
-
-    for palabra in lista_palabras:
-        if match(patron_vocales,palabra):
-            lista_palabras_filtradas.append(palabra)
     
-    return lista_palabras_filtradas
+    patron_vocales = compile("\\b[aeiouAEIOU][A-Za-z]+\\b")
+    lista_palabras = findall(patron_vocales,texto)
+    return lista_palabras
 
 print(filtrar_vocal("Hola mundo elegante"))
