@@ -1,6 +1,6 @@
 from data_stark import *
 from funciones_calculos_stark import *
-from stark_01 import *
+import os 
 
 def copiar_datos(lista_actual:list,lista_nueva:list)->None:
     """Copia los datos originales en una lista nueva
@@ -253,14 +253,9 @@ def stark_marvel_app(lista_heroes:list):
                         print("Se deben normalizar los datos primero antes de calcular")
                 case 11:
                     #sub menu
-                    ingresar_menu_desafio_01(lista_heroes)
+                    pass
                 case 12:
-                    while True:
-                        confirmacion = input("¿Seguro desea salir? s/n\n").lower()
-                        if confirmacion == "s" or confirmacion == "n": 
-                            break
-                    if confirmacion == "s":
-                        break
+                    break
             os.system("pause")
     else:
         print("Error! Lista vacia")
