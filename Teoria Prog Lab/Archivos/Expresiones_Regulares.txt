@@ -1,0 +1,41 @@
+Coincidencias Basicas
+.       - Cualquier Caracter, excepto nueva linea
+\d      - Cualquier Digito (0-9)
+\D      - No es un Digito (0-9)
+\w      - Caracter de Palabra (a-z, A-Z, 0-9, _)
+\W      - No es un Caracter de Palabra.
+\s      - Espacios de cualquier tipo. (espacio, tab, nueva linea)
+\S      - No es un Espacio, Tab o nueva linea.
+
+Limites
+\b      - Limite de Palabra
+\B      - No es un Limite de Palabra
+^       - Inicio de una cadena de texto
+$       - Final de una cadena de texto
+
+Cuantificadores:
+*       - 0 o Más
++       - 1 o Más
+?       - 0 o Uno
+{3}     - Numero Exacto
+{3,4}   - Rango de Numeros (Minimo, Maximo)
+
+Conjuntos de Caracteres
+[]      - Caracteres dentro de los brackets
+[^ ]    - Caracteres que NO ESTAN dentro de los brackets
+
+Grupos
+( )     - Grupo
+|       - Uno u otro
+
+Aquí hay algunos ejemplos de situaciones en las que sería útil utilizar funciones de expresiones regulares en Python:
+
+Validación de entradas: Las expresiones regulares se pueden utilizar para validar entradas de usuario, como direcciones de correo electrónico o números de teléfono. La función "re.search()" o "re.match()" se puede utilizar para buscar patrones específicos en la entrada y asegurarse de que se ajuste a un formato determinado.
+
+Análisis de texto: Las expresiones regulares se pueden utilizar para extraer información específica de un texto, como fechas, horas o números de serie. La función "re.findall()" se puede utilizar para encontrar todas las coincidencias de un patrón en una cadena y devolver una lista de resultados.
+
+Manipulación de texto: Las expresiones regulares también se pueden utilizar para reemplazar o modificar texto en una cadena. La función "re.sub()" se puede utilizar para reemplazar todas las coincidencias de un patrón con una cadena de reemplazo específica.
+
+Tokenización de texto: Las expresiones regulares se pueden utilizar para dividir una cadena de texto en tokens o palabras individuales. La función "re.split()" se puede utilizar para dividir una cadena en una lista de tokens basados en un patrón de expresión regular específico.
+
+Ib9PsUMt1TzVdPBu

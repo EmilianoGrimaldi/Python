@@ -64,7 +64,7 @@ def imprimir_lista_nombres_heroes(lista:list)->None:
         print("\t|\t{:24s}|".format(heroe["nombre"]))
     
 def imprimir_nombre_altura_heroes(lista:list)->None:
-    print("\t     NOMBRES Y ALTURAS DE HEROES\n")
+    print("\t NOMBRES Y ALTURAS DE HEROES\n")
     print("|\t    HEROE\t   |\t   ALTURA\t|\n")
     for heroe in lista:
         print(f"|{heroe['nombre']:^26}|{heroe['altura']:^20}|")
@@ -435,8 +435,8 @@ def ingresar_menu_desafio_01(lista:list)->None:
 
 def menu_heroes(lista,opcion):
     # CONVIERTO TODAS LAS ALTURAS/PESO QUE ESTAN EN STRING LAS PASO A FLOAT
-    # cambiar_tipo_campo_dic(lista,"altura",str,float)
-    # cambiar_tipo_campo_dic(lista,"peso",str,float)
+    cambiar_tipo_campo_dic(lista,"altura",str,float)
+    cambiar_tipo_campo_dic(lista,"peso",str,float)
     # Inicializo los valores de las claves vacias con "No tiene"
     inicializar_clave_vacia(lista,"color_pelo","No tiene")
     inicializar_clave_vacia(lista,"inteligencia","No tiene")

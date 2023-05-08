@@ -11,19 +11,15 @@ def es_decimal(expresion:str,separador_decimal:str)->bool:
 
     Returns:
         bool: True en caso de ser decimal y False en caso contrario
-    """
-    salio_bien = False
-    tiene_separador = False
-    
-    separadores_decimales = compile("[,.]")
-
-    if match(separadores_decimales,separador_decimal):
-        patron_es_decimal = compile(f"^[-0-90-9]+[" + separador_decimal + "][0-9]+$")
-        tiene_separador = True
-        if match(patron_es_decimal, expresion) and tiene_separador:
-            salio_bien = True
-    
-    return salio_bien
-
-    
-print(es_decimal("33.14","."))
+    """ 
+    if not (separador_decimal == "," or separador_decimal == "."):
+        print("No es un separador valido")
+        return False
+    else:
+        patron_es_decimal = compile(f"^[-0-90-9]+" + separador_decimal + "[0-9]+$")
+        if match(patron_es_decimal,expresion):
+            return True
+        else:
+            return False
+  
+print(es_decimal("33,14",","))

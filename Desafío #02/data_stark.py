@@ -1,4 +1,4 @@
-lista_personajes_pruebas =\
+lista_personajes =\
 [
   {
     "nombre": "Howard the Duck",
@@ -16,7 +16,7 @@ lista_personajes_pruebas =\
     "nombre": "Rocket Raccoon",
     "identidad": "Rocket Raccoon",
     "empresa": "Marvel Comics",
-    "altura": "79.349999999999994",
+    "altura": "122.77",
     "peso": "25.73",
     "genero": "M",
     "color_ojos": "Brown",
@@ -76,7 +76,7 @@ lista_personajes_pruebas =\
     "nombre": "Storm",
     "identidad": "Ororo Munroe",
     "empresa": "Marvel Comics",
-    "altura": "183.65000000000001",
+    "altura": "180.72",
     "peso": "57.5",
     "genero": "F",
     "color_ojos": "Blue",

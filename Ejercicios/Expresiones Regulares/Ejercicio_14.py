@@ -11,19 +11,20 @@ def es_fecha(fecha:str,separador_fecha:str)->bool:
 
     Args:
         fecha (str): La fecha a validar\n
-        separador_fecha (str): El separador de la fecha a validar
+        separador_fecha (str): El separador de la fecha a validar "/" o "-"
 
     Returns:
         bool: True si es una fecha valida, False en caso contrario
     """
-
-    separadores_fecha = compile("/|-")
     
-    if match(separadores_fecha,separador_fecha):
-        patron_fecha = compile("^[0-9]{2}"+ separador_fecha +"[0-9]{2}"+ separador_fecha +"[0-9]{4}$")
+    if not (separador_fecha == "/" or separador_fecha == "-"):
+        print("No es un separador valido")
+        return False
+    else:
+        patron_fecha = compile("^([1-3][0-1]|0[1-9]|[1-9])"+ separador_fecha +"(0[1-9]|1[0-2]|[1-9])"+ separador_fecha +"[0-9]{4}$")
         if match(patron_fecha,fecha):
             return True
+        else:
+            return False
 
-    return False
-
-print(es_fecha("31-01-2000","-"))
+print(es_fecha("08/05/2023","/"))

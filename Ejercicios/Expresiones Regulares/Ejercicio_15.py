@@ -13,15 +13,15 @@ def es_hora(hora:str)->bool:
     Returns:
         bool: True si es un formato de hora valida, en caso contrario False
     """
+    
     salio_bien = False
-    patron_hora = compile("^[0-9]{2}:[0-9]{2}:[0-9]{2}$")
-
-
+    patron_hora = compile("^[0-2][0-3]:[0-5][0-9]:[0-5][0-9]$")
+    
     if match(patron_hora,hora):
         salio_bien = True
 
     return salio_bien
     
-print(es_hora("12:10:00"))
+print(es_hora("00:00:00"))
 
 

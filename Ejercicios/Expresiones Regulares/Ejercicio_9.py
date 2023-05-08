@@ -13,13 +13,13 @@ def palabras_filtradas_largo(cadena:str)->list:
     """
 
     cadenas = split(" ",cadena)
-    patron = compile(f"^[A-Za-z]+$")
+    patron = compile("^[A-Za-z]{3,6}$")
     lista_filtrada_largo = []
     
     for cadena in cadenas:
-        if match(patron,cadena) and len(cadena) >= 3 and len(cadena) <= 6 :
+        if match(patron,cadena):
             lista_filtrada_largo.append(cadena)
-    
+              
     return lista_filtrada_largo
             
     
