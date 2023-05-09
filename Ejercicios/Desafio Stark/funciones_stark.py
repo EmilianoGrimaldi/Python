@@ -1,6 +1,6 @@
 from data_stark import *
 from funciones_calculos_stark import *
-from stark_01 import *
+import os
 
 def copiar_datos(lista_actual:list,lista_nueva:list)->None:
     """Copia los datos originales en una lista nueva
@@ -153,7 +153,7 @@ def stark_calcular_imprimir_promedio_altura(lista_heroes):
 def imprimir_menu()->None:
     print("####             STARK INDUSTRIES             ####\n")
     print("-----------------------------------------------------\n")
-    imprimir_dato(" 1 --> Normalizar datos\n 2 --> Imprimir nombre de todos los heroes\n 3 --> Imprimir nombre y altura de los heroes\n 4 --> El heroe mas alto\n 5 --> El heroe mas bajo\n 6 --> Altura promedio de los heroes\n 7 --> Nombre del heroe mas alto\n 8 --> Nombre del heroe mas bajo\n 9 --> Heroe mas pesado\n 10 --> Heroe menos pesado\n11 --> Sub menu\n12 --> Salir\n\n")
+    imprimir_dato(" 1 --> Normalizar datos\n 2 --> Imprimir nombre de todos los heroes\n 3 --> Imprimir nombre y altura de los heroes\n 4 --> El heroe mas alto\n 5 --> El heroe mas bajo\n 6 --> Altura promedio de los heroes\n 7 --> Nombre del heroe mas alto\n 8 --> Nombre del heroe mas bajo\n 9 --> Heroe mas pesado\n10 --> Heroe menos pesado\n11 --> Sub menu\n12 --> Salir\n\n")
 
 
 # 6.3. Crear la función 'stark_menu_principal' la cual se encargará de imprimir el
@@ -196,6 +196,8 @@ def stark_marvel_app(lista_heroes:list):
                         stark_normalizar_datos(lista_heroes,"altura",float)
                         stark_normalizar_datos(lista_heroes,"peso",float)
                         stark_normalizar_datos(lista_heroes,"fuerza",float)
+                        inicializar_clave_vacia(lista_heroes,"color_pelo","No tiene")
+                        inicializar_clave_vacia(lista_heroes,"inteligencia","No tiene")
                         flag_normalizar_datos = True
                     else:
                         print("Los datos ya fueron normalizados")
@@ -296,25 +298,35 @@ def ingresar_menu_desafio_01(lista_heroes:list)->None:
                 print("\t ALTURA PROMEDIO HEROINAS\n")
                 promediar_altura_genero(lista_heroes,"F")
             case "9":
-                nombrar_mayor_altura_genero(lista_heroes,"M")
+                print("\t NOMBRE DE HEROE MAS ALTO\n")
+                stark_calcular_imprimir_nombre_heroe_genero(lista_heroes,"M", "altura", "maximo")
             case "10":
-                nombrar_mayor_altura_genero(lista_heroes,"F")
+                print("\t NOMBRE DE HEROINA MAS ALTA\n")
+                stark_calcular_imprimir_nombre_heroe_genero(lista_heroes,"F", "altura", "maximo")
             case "11":
-                nombrar_menor_altura_genero(lista_heroes,"M")
+                print("\t NOMBRE DE HEROE MAS BAJO\n")
+                stark_calcular_imprimir_nombre_heroe_genero(lista_heroes,"M", "altura", "minimo")
             case "12":
-                nombrar_menor_altura_genero(lista_heroes,"F")
+                print("\t NOMBRE DE HEROINA MAS BAJA\n")
+                stark_calcular_imprimir_nombre_heroe_genero(lista_heroes,"F", "altura", "minimo")
             case "13":
-                listar_cantidad_color_ojos(lista_heroes)   
+                print("\t CANTIDAD DE TIPOS DE COLOR DE OJOS\n")
+                stark_listar_cantidad_categoria(lista_heroes,"color_ojos")  
             case "14":
-                listar_cantidad_color_pelo(lista_heroes)
+                print("\t CANTIDAD DE TIPOS DE COLOR DE PELO\n")
+                stark_listar_cantidad_categoria(lista_heroes,"color_pelo")
             case "15":
-                listar_cantidad_tipo_inteligencia(lista_heroes)
+                print("\t CANTIDAD DE TIPOS DE INTELIGENCIA\n")
+                stark_listar_cantidad_categoria(lista_heroes,"inteligencia")
             case "16":
-                listar_heroes_por_color_ojos(lista_heroes)
+                print("\t LISTA HEROES POR COLOR DE OJOS")
+                stark_listar_nombres_heroes_por_categoria(lista_heroes,"color_ojos")
             case "17":
-                listar_heroes_por_color_pelo(lista_heroes)
+                print("\t LISTA HEROES POR COLOR DE PELO")
+                stark_listar_nombres_heroes_por_categoria(lista_heroes,"color_pelo")
             case "18":
-                listar_heroes_por_inteligencia(lista_heroes)
+                print("\t LISTA HEROES POR INTELIGENCIA")
+                stark_listar_nombres_heroes_por_categoria(lista_heroes,"inteligencia")
             case "19":
                 print("Volviendo al menu principal...")
                 break
@@ -386,3 +398,73 @@ def promediar_altura_genero(lista_heroes:list,genero:str)->None:
             imprimir_dato(altura_promedio)
         case "F":
             imprimir_dato(altura_promedio)
+
+def stark_calcular_imprimir_nombre_heroe_genero(lista_heroes:list,genero:str, key_heroe:str, calculo_realizar:str)->None:
+    
+    if len(lista_heroes) > 0 and type(genero) == str and type(key_heroe) == str and type(calculo_realizar) == str: 
+        heroes_filtrado = filtrar_heroes(lista_heroes,"genero",genero)
+        mas_alto = calcular_max_min_dato(heroes_filtrado, calculo_realizar, key_heroe)
+        nombre_mas_alto = obtener_nombre(mas_alto)
+       
+        match genero:
+            case "M":
+                imprimir_dato(nombre_mas_alto)
+            case "F":
+                imprimir_dato(nombre_mas_alto)
+
+def contar_items_categoria(lista:list,clave:str)->dict:
+    #Creo un dic vacio para ir guardando los items como clave y la cantidad como valor
+    dic_aux = {}
+    
+    for item in lista:
+        #Hago una busqueda y voy guardando el item en una var
+        item_guardado = item[clave].capitalize() # Primer letra en mayuscula el resto minuscula
+        #Pregunto si ese item existe dentro del diccionario
+        if item_guardado in dic_aux:
+            #si existe le sumo 1 al valor de ese item
+            dic_aux[item_guardado] += 1
+        else:
+            #sino existe creo la clave de ese item y le asigno el valor 1 (para indicar que es el primer item)
+            dic_aux[item_guardado] = 1
+    
+    return dic_aux
+
+def stark_listar_cantidad_categoria(lista:list,key_heroe)-> None:
+    cantidad_categoria = contar_items_categoria(lista,key_heroe)  
+
+    for color,cantidad in cantidad_categoria.items():  
+        print("|\t {:28s}|\t    {:2d}\t    |".format(color,cantidad))
+
+def inicializar_clave_vacia(lista:list,clave:str,cadena_inicializar:str)-> None:
+    for heroe in lista:
+        if heroe[clave] == "":
+            heroe[clave] = cadena_inicializar
+
+def filtrar_heroe_categoria(lista:list, clave:str)-> dict:
+    dic = {}
+    
+    for item in lista:
+        value = item[clave].capitalize()
+        if value in dic:
+            dic[value].append(item)
+        else:
+            dic[value] = [item]
+            
+    return dic
+
+def stark_listar_nombres_heroes_por_categoria(lista:list,key_heroe:str)-> None:
+    heroes_categoria = filtrar_heroe_categoria(lista,key_heroe)
+    mostrar_datos(heroes_categoria,"nombre")
+
+def mostrar_datos(diccionario_items:dict,key_obtener:str):
+    for item, items in diccionario_items.items():
+        print(f"\n{item}")
+        for item in items:
+            print(f'-> {item[key_obtener]}')
+
+def menu(titulo:str,opciones:str)->str:
+    print("####             {}             ####\n".format(titulo))
+    print("-----------------------------------------------------\n")
+    print(opciones)
+    opcion = input("Ingrese una opcion\n")
+    return opcion
