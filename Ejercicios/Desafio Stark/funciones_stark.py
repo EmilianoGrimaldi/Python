@@ -252,8 +252,10 @@ def stark_marvel_app(lista_heroes:list):
                     else:
                         print("Se deben normalizar los datos primero antes de calcular")
                 case 11:
-                    #sub menu
-                    ingresar_menu_desafio_01(lista_heroes)
+                    if flag_normalizar_datos:
+                        ingresar_menu_desafio_01(lista_heroes)
+                    else:
+                        print("Se deben normalizar los datos primero antes de ingresar al submenu")
                 case 12:
                     while True:
                         confirmacion = input("¿Seguro desea salir? s/n\n").lower()
@@ -264,3 +266,123 @@ def stark_marvel_app(lista_heroes:list):
             os.system("pause")
     else:
         print("Error! Lista vacia")
+        
+def ingresar_menu_desafio_01(lista_heroes:list)->None:
+    while True:
+        os.system("cls")
+        match menu("STARK INDUSTRIES SUB MENU"," 1 --> Imprimir nombre de todos los superheroes M\n 2 --> Imprimir nombre de todos los superheroes F\n 3 --> El superhéroe más alto de género M\n 4 --> El superhéroe más alto de género F\n 5 --> El superhéroe más bajo de género M\n 6 --> El superhéroe más bajo de género F\n 7 --> Altura promedio de los superhéroes de género M\n 8 --> Altura promedio de los superhéroes de género F\n 9 --> Nombre del superhéroe más alto de género M\n10 --> Nombre del superhéroe más alto de género F\n11 --> Nombre del superhéroe más bajo de género M\n12 --> Nombre del superhéroe más bajo de género F\n13 --> Cuántos superhéroes tienen cada tipo de color de ojos\n14 --> Cuántos superhéroes tienen cada tipo de color de pelo\n15 --> Cuántos superhéroes tienen cada tipo de inteligencia\n16 --> Listar todos los superhéroes agrupados por color de ojos\n17 --> Listar todos los superhéroes agrupados por color de pelo\n18 --> Listar todos los superhéroes agrupados por tipo de inteligencia\n19 --> Volver\n\n"):   
+            case "1":
+                print("\t NOMBRE DE CADA HEROE\n")
+                listar_nombre_genero(lista_heroes,"M")
+            case "2":
+                print("\t NOMBRE DE CADA HEROINA\n")
+                listar_nombre_genero(lista_heroes,"F")
+            case "3":
+                print("\t HEROE MAS ALTO\n")
+                stark_calcular_imprimir_heroe_genero(lista_heroes,"M","altura","maximo")
+            case "4":
+                print("\t HEROINA MAS ALTA\n")
+                stark_calcular_imprimir_heroe_genero(lista_heroes,"F","altura","maximo")
+            case "5":
+                print("\t HEROE MAS BAJO\n")
+                stark_calcular_imprimir_heroe_genero(lista_heroes,"M","altura","minimo")
+            case "6":
+                print("\t HEROINA MAS BAJA\n")
+                stark_calcular_imprimir_heroe_genero(lista_heroes,"F","altura","minimo")
+            case "7":
+                print("\t ALTURA PROMEDIO HEROES\n")
+                promediar_altura_genero(lista_heroes,"M")
+            case "8":
+                print("\t ALTURA PROMEDIO HEROINAS\n")
+                promediar_altura_genero(lista_heroes,"F")
+            case "9":
+                nombrar_mayor_altura_genero(lista_heroes,"M")
+            case "10":
+                nombrar_mayor_altura_genero(lista_heroes,"F")
+            case "11":
+                nombrar_menor_altura_genero(lista_heroes,"M")
+            case "12":
+                nombrar_menor_altura_genero(lista_heroes,"F")
+            case "13":
+                listar_cantidad_color_ojos(lista_heroes)   
+            case "14":
+                listar_cantidad_color_pelo(lista_heroes)
+            case "15":
+                listar_cantidad_tipo_inteligencia(lista_heroes)
+            case "16":
+                listar_heroes_por_color_ojos(lista_heroes)
+            case "17":
+                listar_heroes_por_color_pelo(lista_heroes)
+            case "18":
+                listar_heroes_por_inteligencia(lista_heroes)
+            case "19":
+                print("Volviendo al menu principal...")
+                break
+        os.system("pause")
+
+def filtrar_heroes(lista_heroes:list, clave:str, valor:str)-> list:
+    if len(lista_heroes) > 0 and type(clave) == str and type(valor) == str:
+        lista_filtrada = []
+        for heroe in lista_heroes:
+            if heroe[clave] == valor:
+                lista_filtrada.append(heroe)
+        return lista_filtrada
+    else:
+        return -1
+    
+def listar_nombre_genero(lista_heroes:list, genero:str)->None:
+    if len(lista_heroes) > 0 and type(genero) == str:
+        heroes_genero = filtrar_heroes(lista_heroes,"genero",genero)
+        match genero:
+            case "M":
+                stark_imprimir_nombres_campo(heroes_genero,"genero")
+            case "F":
+                stark_imprimir_nombres_campo(heroes_genero,"genero")
+    else:
+        return -1
+
+def stark_imprimir_nombres_campo(lista_heroes:list,campo:str)->int:
+    if len(lista_heroes) > 0:
+        for heroe in lista_heroes:
+            print(obtener_nombre_y_dato(heroe,campo))
+    else:
+        return -1
+
+def stark_calcular_imprimir_heroe_genero(lista_heroes:list,genero:str, key_heroe:str, calculo_realizar:str)->None:
+    
+    if len(lista_heroes) > 0 and type(genero) == str and type(key_heroe) == str and type(calculo_realizar) == str: 
+        heroes = filtrar_heroes(lista_heroes,"genero",genero)
+        max_min = guardar_los_max_min(heroes, calculo_realizar,key_heroe)
+        if len(max_min) == 1:
+            match genero:
+                case "M":
+                    stark_imprimir_nombres_campo(max_min,key_heroe)
+                case "F":
+                    stark_imprimir_nombres_campo(max_min,key_heroe)
+        else:
+            if len(max_min) > 1:
+                match genero:
+                    case "M":
+                        stark_imprimir_nombres_campo(max_min,key_heroe)
+                    case "F":
+                        stark_imprimir_nombres_campo(max_min,key_heroe)
+        
+
+def guardar_los_max_min(lista_heroes:list, calculo_realizar:str,key_heroe:str)->list:
+    aux_max_min = []
+    heroe_max_min = calcular_max_min_dato(lista_heroes,calculo_realizar,key_heroe)
+    for heroe in lista_heroes:
+        if heroe[key_heroe] == heroe_max_min[key_heroe]:
+            aux_max_min.append(heroe)
+
+    return aux_max_min
+
+def promediar_altura_genero(lista_heroes:list,genero:str)->None:
+    heroes = filtrar_heroes(lista_heroes,"genero",genero)
+    altura_promedio = calcular_promedio(heroes,"altura")
+    
+    match genero:
+        case "M":
+            imprimir_dato(altura_promedio)
+        case "F":
+            imprimir_dato(altura_promedio)
