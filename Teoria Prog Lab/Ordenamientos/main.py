@@ -8,8 +8,8 @@ def mostrar_personas(lista:list):
     for persona in lista:
         mostrar_persona(persona)
 
-mostrar_personas(origen_data)
+
+ordenar_lista_doble_criterio_creciente_decreciente(origen_data,"edad", "genero", False)
 print("------------------------------")
-ordenar_lista_dic(origen_data,"edad",False)
-print("------------------------------")
 mostrar_personas(origen_data)
+
