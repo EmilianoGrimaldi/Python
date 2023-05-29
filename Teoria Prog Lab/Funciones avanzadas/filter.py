@@ -6,7 +6,7 @@ def esPar(valor)-> bool:
 
 #filter me devuelve bool TRUE o FALSE
   
-pares = list(filter(lambda valor: not valor % 2, numeros))  
+pares = list(filter(lambda valor: valor % 2 == 0, numeros))  
      
 print(esPar(47))
 print(pares)

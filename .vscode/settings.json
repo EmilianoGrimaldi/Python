@@ -7,5 +7,9 @@
     "docify.commentService.moreExpressiveComments": false,
     "docify.commentService.inlineComments": false,
     "docify.commentService.docstringFormat": "Doxygen",
-    "docify.translateService.programmingLanguage": "python"
+    "docify.translateService.programmingLanguage": "python",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "python.formatting.provider": "none"
 }

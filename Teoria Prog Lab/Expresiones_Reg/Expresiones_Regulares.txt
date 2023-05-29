@@ -39,3 +39,4 @@ Manipulación de texto: Las expresiones regulares también se pueden utilizar pa
 Tokenización de texto: Las expresiones regulares se pueden utilizar para dividir una cadena de texto en tokens o palabras individuales. La función "re.split()" se puede utilizar para dividir una cadena en una lista de tokens basados en un patrón de expresión regular específico.
 
 Ib9PsUMt1TzVdPBu
+
