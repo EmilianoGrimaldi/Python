@@ -1,4 +1,5 @@
 import pygame, sys
+from funciones import *
 
 ANCHO = 800
 ALTURA = 600
@@ -16,7 +17,7 @@ resolucion = pygame.display.set_mode((ANCHO,ALTURA))
 pygame.display.set_caption(TITULO)
 
 #FONDO
-fondo = pygame.image.load("PyGame_Repaso\src\img\galaxia.jpg").convert() #JPG
+fondo = pygame.image.load("PyGame_Repaso\src\img\galaxia.jpg").convert_alpha()#JPG
 fondo = pygame.transform.scale(fondo,(ANCHO,ALTURA))
 
 reloj = pygame.time.Clock()
@@ -34,7 +35,7 @@ rect_mundo_x.center = CENTRO
 # fuente = pygame.font.get_fonts()
 # print(fuente)
 fuente = pygame.font.SysFont("superfunky", 50)
-texto = fuente.render("PUMM!!!", True, ROJO)
+
 #------------
 #EXPLOSION
 sup_explosion = pygame.image.load("PyGame_Repaso\src\img\explosion.png").convert_alpha() #PNG para que mantenga la transparencia
@@ -83,11 +84,19 @@ while True:
         else:
             x_mundo = False
     #CHOCARON
-    if rect_mundo.colliderect(rect_mundo_x):
-        resolucion.blit(texto, (0, 0))
+    # if rect_mundo.colliderect(rect_mundo_x):
+    if colision_circulos(rect_mundo, rect_mundo_x):
+        mensaje = "PUMMM!!!"
         resolucion.blit(sup_explosion, rect_mundo)
         resolucion.blit(sup_explosion, rect_mundo_x)
         sonido.play()
-        
+    else:
+        resolucion.blit(sup_mundo, rect_mundo)
+        resolucion.blit(sup_mundo_x, rect_mundo_x)
+        mensaje = ""
+    
+    if mensaje:
+        texto = fuente.render(mensaje, True, ROJO)
+        resolucion.blit(texto, (0, 0))
     #---------------------------------------
     pygame.display.flip()
